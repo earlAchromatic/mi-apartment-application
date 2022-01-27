@@ -118,120 +118,104 @@
             })
           }}) as Income?</label
         >
-        <ToggleButton
+        <SelectButton
           v-model="income"
-          name="income"
-          id="income"
-          onLabel="Yes I Do."
-          offLabel="No I Do Not."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
-        /><small v-show="validationErrors.income && submitted" class="p-error"
+          :options="['yes', 'no']"
+          :multiple="false"
+        />
+        <small v-show="validationErrors.income && submitted" class="p-error"
           >You Must Select Yes or No.</small
         >
       </div>
       <div class="field col-12 md:col-4">
         <label for="credit">Do You Have A Credit Score of At Least 660?</label>
-        <ToggleButton
+        <SelectButton
           v-model="credit"
-          name="credit"
-          id="credit"
-          onLabel="Yes I Do."
-          offLabel="No I Do Not."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.credit && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
       <div class="field col-12 md:col-4">
         <label for="felony">Do You Have Felonies on Your Record?</label>
-        <ToggleButton
-          name="felony"
-          id="felony"
+        <SelectButton
           v-model="felony"
-          onLabel="Yes I Do."
-          offLabel="No I Do Not."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.felony && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
       <div class="field col-12 md:col-4">
         <label for="landlord"
           >Do You Have At Least 3 Good Landlord References?</label
         >
-        <ToggleButton
-          name="landlord"
-          id="landlord"
+        <SelectButton
           v-model="landlord"
-          onLabel="Yes I Do."
-          offLabel="No I Do Not."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.landlord && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
 
       <div class="field col-12 md:col-4">
         <label for="smoker">Are You A Smoker?</label>
-        <ToggleButton
-          name="smoker"
-          id="smoker"
+        <SelectButton
           v-model="smoker"
-          onLabel="No I Am Not."
-          offLabel="Yes I Am."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.smoker && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
       <div class="field col-12 md:col-4">
         <label for="pets">Do You Have Pets?</label>
-        <ToggleButton
-          name="pets"
-          id="pets"
+        <SelectButton
           v-model="pets"
-          onLabel="No I Do Not."
-          offLabel="Yes I Do."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
-          :class="{ neg: pets }"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.pets && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
-      <div class="field col-12 md:col-6">
+      <div class="field col-12 md:col-4">
         <label for="evictions">Do You Have Previous Evictions?</label>
-        <ToggleButton
-          name="evictions"
-          id="evictions"
+        <SelectButton
           v-model="evictions"
-          onLabel="No I Do Not."
-          offLabel="Yes I Do."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.evictions && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
-      <div class="field col-12 md:col-6">
+      <div class="field col-12 md:col-4">
         <label for="bg">Can You Pass A Background Check?</label>
-        <ToggleButton
-          name="bg"
-          id="bg"
-          v-model="bg"
-          onLabel="Yes I Can."
-          offLabel="No I Cannot."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
-        />
+        <SelectButton v-model="bg" :options="['yes', 'no']" :multiple="false" />
+        <small v-show="validationErrors.bg && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
       <div class="field col-12 md:col-4">
         <label for="fee"
           >Are You Willing to Pay the $40 Application Fee (charged after seeing
           the property, before application)?</label
         >
-        <ToggleButton
-          name="fee"
-          id="fee"
+        <SelectButton
           v-model="fee"
-          onLabel="Yes I Am."
-          offLabel="No I Am Not."
-          onIcon="pi pi-check"
-          offIcon="pi pi-times"
+          :options="['yes', 'no']"
+          :multiple="false"
         />
+        <small v-show="validationErrors.fee && submitted" class="p-error"
+          >You Must Select Yes or No.</small
+        >
       </div>
     </div>
 
@@ -361,6 +345,42 @@ export default {
         this.validationErrors["email"] = true;
       } else delete this.validationErrors["email"];
 
+      if (this.income === null) {
+        this.validationErrors["income"] = true;
+      } else delete this.validationErrors["income"];
+
+      if (this.credit === null) {
+        this.validationErrors["credit"] = true;
+      } else delete this.validationErrors["credit"];
+
+      if (this.felony === null) {
+        this.validationErrors["felony"] = true;
+      } else delete this.validationErrors["felony"];
+
+      if (this.landlord === null) {
+        this.validationErrors["landlord"] = true;
+      } else delete this.validationErrors["landlord"];
+
+      if (this.smoker === null) {
+        this.validationErrors["smoker"] = true;
+      } else delete this.validationErrors["smoker"];
+
+      if (this.pets === null) {
+        this.validationErrors["pets"] = true;
+      } else delete this.validationErrors["pets"];
+
+      if (this.evictions === null) {
+        this.validationErrors["evictions"] = true;
+      } else delete this.validationErrors["evictions"];
+
+      if (this.bg === null) {
+        this.validationErrors["bg"] = true;
+      } else delete this.validationErrors["bg"];
+
+      if (this.fee === null) {
+        this.validationErrors["fee"] = true;
+      } else delete this.validationErrors["fee"];
+
       return !Object.keys(this.validationErrors).length;
     },
     encode(data) {
@@ -391,6 +411,10 @@ export default {
     text-align: left
 form
   padding: 2rem
+  .field
+    flex-direction: column
+  .p-selectbutton
+    width: 100%
 
 .descr
   text-align: left
