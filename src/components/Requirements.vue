@@ -75,11 +75,6 @@ import Fieldset from "primevue/fieldset";
 export default {
   components: { Card, Fieldset },
   props: ["unit"],
-  data() {
-    return {
-      //unitReq: this.unit,
-    };
-  },
 };
 </script>
 

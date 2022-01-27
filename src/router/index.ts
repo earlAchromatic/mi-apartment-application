@@ -13,7 +13,7 @@ const routes = [
     component: () => import("../views/PreScreen.vue"),
   },
   {
-    path: "/thanks",
+    path: "/:catchAll(.*)/thanks",
     name: "success",
     component: () => import("../components/SubmissionSuccess.vue"),
   },
