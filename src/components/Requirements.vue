@@ -1,22 +1,21 @@
 <template>
   <Card class="req">
     <template #content>
-      <h2>Do You Qualify to Rent This Unit?</h2>
+      <h2>
+        Do You Qualify to Rent {{ this.unit ? this.unit.name : "This Unit" }}?
+      </h2>
       <Fieldset legend="Income">
         <p>
           Must be 3x Rent Total. For This Unit, that number is 3 x
           {{
-            Number(this.unitReq ? this.unitReq.rent : 1000).toLocaleString(
-              "en-US",
-              {
-                style: "currency",
-                currency: "USD",
-                maximumSignificantDigits: 3,
-              }
-            )
+            Number(this.unit ? this.unit.rent : 1000).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumSignificantDigits: 3,
+            })
           }}/mo. =
           {{
-            Number(this.unitReq ? this.unitReq.rent * 3 : 3000).toLocaleString(
+            Number(this.unit ? this.unit.rent * 3 : 3000).toLocaleString(
               "en-US",
               {
                 style: "currency",
@@ -28,13 +27,14 @@
           <b
             >Do you make at least
             {{
-              Number(
-                this.unitReq ? this.unitReq.rent * 3 : 3000
-              ).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-                maximumSignificantDigits: 3,
-              })
+              Number(this.unit ? this.unit.rent * 3 : 3000).toLocaleString(
+                "en-US",
+                {
+                  style: "currency",
+                  currency: "USD",
+                  maximumSignificantDigits: 3,
+                }
+              )
             }}
             per month?</b
           >
@@ -77,7 +77,7 @@ export default {
   props: ["unit"],
   data() {
     return {
-      unitReq: this.unit,
+      //unitReq: this.unit,
     };
   },
 };

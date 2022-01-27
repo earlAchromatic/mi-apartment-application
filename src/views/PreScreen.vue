@@ -264,7 +264,6 @@ export default {
     Divider,
     TriStateCheckbox,
   },
-  computed: {},
   data() {
     return {
       selectedUnit: null,
@@ -375,12 +374,9 @@ export default {
   mounted() {
     if (this.$route.params.id) {
       let id = this.$route.params.id;
-      console.log(id);
       let unit = this.units.filter((e) => {
-        console.log(e);
         return e.name === id;
       });
-      console.log(unit);
       this.selectedUnit = unit[0];
     }
   },
