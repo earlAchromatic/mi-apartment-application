@@ -23,10 +23,22 @@ import Navbar from "./components/Navbar.vue";
 }
 </style>
 
-<style lang="sass" scoped>
+<style lang="sass">
+html
+  font-size: 12px
 .centered
     max-width: 90vw
     max-width: 960px
     margin: 0 auto
     margin-top: 14rem
+.field
+    display: flex
+    flex-wrap: wrap
+.p-dropdown
+    width: 100%
+label
+  padding-top: 1rem
+  padding-bottom: 0.5rem
+a
+  text-decoration: none
 </style>

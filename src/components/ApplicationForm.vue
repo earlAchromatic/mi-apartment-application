@@ -34,19 +34,19 @@ export default {
     const items = ref([
       {
         label: "Personal",
-        to: "/",
+        to: "/application",
       },
       {
-        label: "Seat",
-        to: "/steps/seat",
+        label: "Employment History",
+        to: "/application/EmploymentHistory",
       },
       {
-        label: "Payment",
-        to: "/steps/payment",
+        label: "Rental History",
+        to: "/application/RentalHistory",
       },
       {
         label: "Confirmation",
-        to: "/steps/confirmation",
+        to: "/application/confirmation",
       },
     ]);
     const formObject = ref({});
@@ -87,13 +87,4 @@ export default {
 
 ::v-deep(.p-card-body)
   padding: 2rem
-
-.field
-    display: flex
-    flex-wrap: wrap
-.p-dropdown
-    width: 100%
-label
-  padding-top: 1rem
-  padding-bottom: 0.5rem
 </style>

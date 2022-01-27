@@ -3,24 +3,43 @@ import Home from "../views/Home.vue";
 
 const routes = [
   {
-    path: "",
+    path: "/",
+    component: () => import("../views/Home.vue"),
+  },
+  { path: "/about", component: () => import("../views/About.vue") },
+  {
+    path: "/screen",
+    component: () => import("../views/PreScreen.vue"),
+  },
+  {
+    path: "/thanks",
+    name: "success",
+    component: () => import("../components/SubmissionSuccess.vue"),
+  },
+  {
+    path: "/404",
+    name: "fail",
+    component: () => import("../components/SubmissionFail.vue"),
+  },
+  {
+    path: "/application",
     component: () => import("../components/ApplicationForm.vue"),
     children: [
       {
         path: "",
-        component: () => import("../views/steps/PersonalDemo.vue"),
+        component: () => import("../views/application/PersonalInfo.vue"),
       },
       {
-        path: "/steps/seat",
-        component: () => import("../views/steps/SeatDemo.vue"),
+        path: "/application/EmploymentHistory",
+        component: () => import("../views/application/EmploymentHistory.vue"),
       },
       {
-        path: "/steps/payment",
-        component: () => import("../views/steps/PaymentDemo.vue"),
+        path: "/application/RentalHistory",
+        component: () => import("../views/application/RentalHistory.vue"),
       },
       {
-        path: "/steps/confirmation",
-        component: () => import("../views/steps/ConfirmationDemo.vue"),
+        path: "/application/confirmation",
+        component: () => import("../views/application/Confirmation.vue"),
       },
     ],
   },

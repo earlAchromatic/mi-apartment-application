@@ -1,13 +1,12 @@
 <template>
-  <ApplicationForm />
+  <h2>Welcome</h2>
+  <router-link to="/screen">Apply For This Unit</router-link>
 </template>
 
-<script setup>
-import ApplicationForm from "../components/ApplicationForm.vue";
-</script>
+<script setup></script>
 
 <script>
 export default {
-  components: { ApplicationForm },
+  components: {},
 };
 </script>
