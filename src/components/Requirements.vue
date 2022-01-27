@@ -4,14 +4,46 @@
       <h2>Do You Qualify to Rent This Unit?</h2>
       <Fieldset legend="Income">
         <p>
-          Must be 3x Rent Total. For This Unit, that number is 3 x $1,200/mo. =
-          $3,600/mo. <b>Do you make at least $3,600 per month?</b>
+          Must be 3x Rent Total. For This Unit, that number is 3 x
+          {{
+            Number(this.unitReq ? this.unitReq.rent : 1000).toLocaleString(
+              "en-US",
+              {
+                style: "currency",
+                currency: "USD",
+                maximumSignificantDigits: 3,
+              }
+            )
+          }}/mo. =
+          {{
+            Number(this.unitReq ? this.unitReq.rent * 3 : 3000).toLocaleString(
+              "en-US",
+              {
+                style: "currency",
+                currency: "USD",
+                maximumSignificantDigits: 3,
+              }
+            )
+          }}/mo.
+          <b
+            >Do you make at least
+            {{
+              Number(
+                this.unitReq ? this.unitReq.rent * 3 : 3000
+              ).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                maximumSignificantDigits: 3,
+              })
+            }}
+            per month?</b
+          >
         </p>
       </Fieldset>
       <Fieldset legend="Credit Score">
         <p>
           Credit Score of At Least 660.
-          <b>Do you have a Credit Score of 650 or higher?</b>
+          <b>Do you have a Credit Score of 660 or higher?</b>
         </p>
       </Fieldset>
       <Fieldset legend="Criminal History">
@@ -42,6 +74,12 @@ import Card from "primevue/card ";
 import Fieldset from "primevue/fieldset";
 export default {
   components: { Card, Fieldset },
+  props: ["unit"],
+  data() {
+    return {
+      unitReq: this.unit,
+    };
+  },
 };
 </script>
 

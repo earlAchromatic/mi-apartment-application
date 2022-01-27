@@ -1,5 +1,5 @@
 <template>
-  <Requirements />
+  <Requirements :unit="this.selectedUnit" />
   <Card class="instructions">
     <template #title> Submit This Form to Schedule A Showing </template>
     <template #subtitle> Pre-Application </template>
@@ -28,7 +28,19 @@
           v-show="validationErrors.selectedUnit && submitted"
           class="p-error"
           >Must Select A Unit.</small
-        >
+        ><small class="descr" v-if="this.selectedUnit !== null"
+          >This unit is a {{ this.selectedUnit.descr }},
+          {{ Number(this.selectedUnit.sqft).toLocaleString() }} square ft.
+          apartment with full amenities including air conditioning and laundry.
+          The rent for this unit is:
+          {{
+            Number(this.selectedUnit.rent).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumSignificantDigits: 3,
+            })
+          }}, not including electric and water.
+        </small>
       </div>
 
       <div class="field col-12 md:col-8">
@@ -97,7 +109,13 @@
       <div class="field col-12 md:col-4">
         <label for="income"
           >Do You Have At Least 3x Rent ({{
-            this.selectedUnit ? this.selectedUnit.rent * 3 : 3600
+            Number(
+              this.selectedUnit ? this.selectedUnit.rent * 3 : 3600
+            ).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumSignificantDigits: 3,
+            })
           }}) as Income?</label
         >
         <ToggleButton
@@ -251,9 +269,20 @@ export default {
     return {
       selectedUnit: null,
       units: [
-        { name: "Unit A", descr: "1Br, 1Ba", avail: true, rent: 950 },
-        { name: "Unit B", descr: "2Br, 1Ba", avail: true, rent: 1250 },
-        { name: "Unit C", descr: "2Br, 1Ba", avail: false, rent: 1250 },
+        {
+          name: "Unit A",
+          descr: "1 Br, 1 Ba",
+          avail: true,
+          rent: 950,
+          sqft: 900,
+        },
+        {
+          name: "Unit B",
+          descr: "2 Br, 1 Ba",
+          avail: true,
+          rent: 1250,
+          sqft: 2000,
+        },
       ],
       findouthow: "",
       firstname: "",
@@ -277,13 +306,6 @@ export default {
     handleSubmit() {
       this.submitted = true;
       if (this.validateForm()) {
-        console.log("Posting");
-        console.log(
-          `{
-            findouthow: ${this.findouthow},
-            firstname: ${this.firstname}
-            }`
-        );
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -333,11 +355,12 @@ export default {
 
       if (!this.phone) {
         this.validationErrors["phone"] = true;
-      } else delete this.validationErrors["[phone]"];
+      } else delete this.validationErrors["phone"];
 
       if (this.email === "" || !this.email.includes("@")) {
+        console.log(this.email);
         this.validationErrors["email"] = true;
-      } else delete this.validationErrors["[email]"];
+      } else delete this.validationErrors["email"];
 
       return !Object.keys(this.validationErrors).length;
     },
@@ -348,6 +371,18 @@ export default {
         )
         .join("&");
     },
+  },
+  mounted() {
+    if (this.$route.params.id) {
+      let id = this.$route.params.id;
+      console.log(id);
+      let unit = this.units.filter((e) => {
+        console.log(e);
+        return e.name === id;
+      });
+      console.log(unit);
+      this.selectedUnit = unit[0];
+    }
   },
 };
 </script>
@@ -361,6 +396,6 @@ export default {
 form
   padding: 2rem
 
-.neg
-  border: red
+.descr
+  text-align: left
 </style>

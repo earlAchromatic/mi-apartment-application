@@ -3,6 +3,10 @@
   <div class="centered">
     <router-view />
   </div>
+  <span
+    >Thank You for Using <a href="/">Ionia.Apartments</a>. All Are Welcome To
+    Apply for Tenancy.
+  </span>
 </template>
 
 <script setup lang="ts">
@@ -34,9 +38,11 @@ body
     max-width: 960px
     margin: 0 auto
     margin-top: 14rem
+    min-height: calc( 100vh - 16rem )
 .field
     display: flex
     flex-wrap: wrap
+    align-content: flex-start
 .p-dropdown
     width: 100%
 label

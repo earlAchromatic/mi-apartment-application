@@ -7,6 +7,7 @@ const routes = [
     component: () => import("../views/Home.vue"),
   },
   { path: "/about", component: () => import("../views/About.vue") },
+  { path: "/FAQ", component: () => import("../views/FAQ.vue") },
   {
     path: "/screen",
     component: () => import("../views/PreScreen.vue"),
@@ -20,6 +21,10 @@ const routes = [
     path: "/404",
     name: "fail",
     component: () => import("../components/SubmissionFail.vue"),
+  },
+  {
+    path: "/:id/screen",
+    component: () => import("../views/PreScreen.vue"),
   },
   {
     path: "/application",
