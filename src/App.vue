@@ -9,6 +9,7 @@
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
 import Navbar from "./components/Navbar.vue";
 </script>
 
@@ -26,6 +27,8 @@ import Navbar from "./components/Navbar.vue";
 <style lang="sass">
 html
   font-size: 12px
+body
+  margin: 0
 .centered
     max-width: 90vw
     max-width: 960px
@@ -41,4 +44,6 @@ label
   padding-bottom: 0.5rem
 a
   text-decoration: none
+.p-card
+  background: #f3f3f3
 </style>

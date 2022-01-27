@@ -17,9 +17,20 @@
       <Fieldset legend="Criminal History">
         <p>No Felonies. <b>Do You have a history of Felonies?</b></p>
       </Fieldset>
+      <Fieldset legend="Landlord References">
+        <p>
+          Must Have Good References From Past 3 Landlords.
+          <b>Do You Have At Least 3 Good Landlord References?</b>
+        </p>
+      </Fieldset>
       <Fieldset legend="Misc">
         <p>
-          No Smokers. No Pets Allowed. <b>Do You Smoke? Do You Have Pets?</b>
+          No Previous Evictions. No Smokers. No Pets Allowed. Must Pass
+          Background Check.
+          <b
+            >Have You Been Evicted? Do You Smoke? Do You Have Pets? Can You Pass
+            A Background Check?</b
+          >
         </p>
       </Fieldset>
     </template>
@@ -35,13 +46,15 @@ export default {
 </script>
 
 <style lang="sass">
+
 .req
     top: -100px
     position: relative
-
+    h2
+        width: 100%
 fieldset
     margin-bottom: 1rem
-
+    max-width: 25rem
 
 .fieldset p
     line-height: 1
@@ -52,4 +65,9 @@ fieldset
 
 .p-fieldset .p-fieldset-legend
     margin-right: auto
+
+.p-card-content
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
 </style>
