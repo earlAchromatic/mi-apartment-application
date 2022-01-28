@@ -9,34 +9,33 @@
     <template #content>
       <h3>Our Units</h3>
       <p>
-        Relax and unwind in a 1,000 sq foot two bedroom and one bathroom
-        apartment. Fully equipped with a washer and dryer and onsite parking.
+        Relax and unwind in our high quality downtown Ionia apartments. All units are fully equipped with a washer and dryer, new kitchen appliances and off-street parking.
         Stay cool in the summer and warm in the winter with the AC/Heater.
-        Basement access is perfect for storage and enjoy the side porch access
-        and watch the sunrise over Ionia’s historic downtown.
+        Other amenities available vary per unit but include full basement access, a backyard great for leisure activities, great 2nd story views of the iconic Ionia Bridge and a cozy enclosed sideporch.
       </p>
       <h3>Our Philosophy</h3>
       <p>
-        We at Washington Apartments believe in providing and maintaining quality
-        homes for the Ionia community. Washington Apartments prides itself on
-        continuously striving to be one of the best rental properties in Ionia
-        County. Welcome home.
+        At Ionia.Apartments, we believe in providing and maintaining quality
+        homes for the Ionia community. Ionia.Apartments prides itself on
+        continuously striving to be one of the best places to live in downtown Ionia. Welcome home.
       </p>
 
       <h3>Our Promise</h3>
       <p>
-        At Washington Apartments, we promise to: 
+        We promise to: 
         
         <ul> 
-            <li>all phone calls within 24 business hours </li>
-               <li> Complete all maintenance issues and repairs efficiently, quickly, and courteously</li>
-               <li> Consistently improve the aesthetic look of the property Provide exceptional service and support to residents </li>
+            <li>Respond to maintenance requests in a timely fashion.</li>
+               <li> Complete all maintenance issues and repairs efficiently, quickly, and courteously.</li>
+               <li> Consistently improve and maintain the historic aesthetic of the property.</li>
+               <li> Provide exceptional service and support to all residents.</li>
+               <li>Support the hardworking residents of the Ionia Community by providing quality dwellings.</li>
         </ul>
       </p>
     </template>
     <template #footer>
-      <router-link to="/application">
-        <Button icon="pi pi-check" label="Apply" />
+      <router-link to="/">
+        <Button icon="pi pi-check" label="Schedule A Showing Today" />
       </router-link>
     </template>
   </Card>
