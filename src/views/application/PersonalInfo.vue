@@ -10,7 +10,7 @@
             <Dropdown
               id="unit"
               name="unit"
-              v-model="selectedUnit"
+              v-model="this.selectedUnit"
               :options="units"
               optionLabel="name"
               placeholder="Select a Unit"
@@ -144,7 +144,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Button from "primevue/button";
 import Card from "primevue/card";
 import InputNumber from "primevue/inputnumber";
@@ -154,14 +154,30 @@ import Divider from "primevue/divider";
 import { defineComponent } from "vue";
 
 export default defineComponent({
+  props: ["units"],
   data() {
     return {
-      findouthow: "",
+      selectedUnits: null,
+      middlename: "",
       firstname: "",
       lastname: "",
-      age: null,
+      unit: "",
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      homephone: "",
+      workphone: "",
+      cellphone: "",
+      email: "",
+      social: "",
+      bday: "",
+      license: "",
+      carmake: "",
+      carmodel: "",
+      caryear: "",
       submitted: false,
-      validationErrors: {} as validationForm,
+      validationErrors: {},
     };
   },
   components: { Button, Card, InputNumber, InputText, Disclaimer, Divider },
@@ -188,13 +204,6 @@ export default defineComponent({
     },
   },
 });
-
-interface validationForm {
-  findouthow?: boolean;
-  firstname?: boolean;
-  lastname?: boolean;
-  age?: boolean;
-}
 </script>
 
 <style lang="sass" scoped>
