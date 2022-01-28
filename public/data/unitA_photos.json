@@ -1,0 +1,142 @@
+{
+  "data": [
+    {
+      "itemImageSrc": "/unitA/unitA-1.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-1.jpg",
+      "alt": "Living Room",
+      "title": "Living Room"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-2.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-2.jpg",
+      "alt": "Description for Image 2",
+      "title": "Full Kitchen"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-3.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-3.jpg",
+      "alt": "Description for Image 3",
+      "title": "Full Kitchen"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-4.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-4.jpg",
+      "alt": "Description for Image 4",
+      "title": "Open Concept"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-5.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-5.jpg",
+      "alt": "Description for Image 5",
+      "title": "Great Living Space"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-6.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-6.jpg",
+      "alt": "Description for Image 6",
+      "title": "Rustic Brick"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-7.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-7.jpg",
+      "alt": "Description for Image 7",
+      "title": "Lots of Light"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-8.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-8.jpg",
+      "alt": "Description for Image 8",
+      "title": "Lots of Light"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-9.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-9.jpg",
+      "alt": "Description for Image 9",
+      "title": "Tall Ceilings"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-10.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-10.jpg",
+      "alt": "Description for Image 10",
+      "title": "Title 10"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-11.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-11.jpg",
+      "alt": "Description for Image 11",
+      "title": "Hallway to Bed and Bath"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-12.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-12.jpg",
+      "alt": "Description for Image 12",
+      "title": "Opening to Bathroom"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-13.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-13.jpg",
+      "alt": "Description for Image 13",
+      "title": "Full Bathroom"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-14.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-14.jpg",
+      "alt": "Description for Image 14",
+      "title": "Open Stairwell"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-15.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-15.jpg",
+      "alt": "Description for Image 15",
+      "title": "Standup Shower"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-16.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-16.jpg",
+      "alt": "Description for Image 16",
+      "title": "All New Fixtures"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-17.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-17.jpg",
+      "alt": "Description for Image 17",
+      "title": "All New Fixtures"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-18.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-18.jpg",
+      "alt": "Description for Image 18",
+      "title": "Cozy Views"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-19.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-19.jpg",
+      "alt": "Description for Image 19",
+      "title": "Bedroom Door"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-20.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-20.jpg",
+      "alt": "Description for Image 20",
+      "title": "Spacious Bedroom"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-21.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-21.jpg",
+      "alt": "Description for Image 21",
+      "title": "Original Wood Doors"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-22.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-22.jpg",
+      "alt": "Description for Image 22",
+      "title": "Great Windows"
+    },
+    {
+      "itemImageSrc": "/unitA/unitA-23.jpg",
+      "thumbnailImageSrc": "/unitA/unitA-23.jpg",
+      "alt": "Description for Image 23",
+      "title": "Large Bathroom"
+    }
+  ]
+}

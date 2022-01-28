@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="faq-offset">
     <h2>Frequently Asked Questions</h2>
     <Fieldset legend="Do you perform background checks?" :toggleable="true">
       Yes, we do.
@@ -25,4 +25,6 @@ export default {
 <style lang="sass" scoped>
 .p-fieldset
     margin-bottom: 2rem
+.faq-offset
+    margin-top: 10rem
 </style>
