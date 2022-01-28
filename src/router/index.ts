@@ -25,28 +25,28 @@ const routes = [
     path: "/:id/screen",
     component: () => import("../views/PreScreen.vue"),
   },
-  {
-    path: "/:id/application",
-    component: () => import("../components/ApplicationForm.vue"),
-    children: [
-      {
-        path: "",
-        component: () => import("../views/application/PersonalInfo.vue"),
-      },
-      {
-        path: "/:id/application/EmploymentHistory",
-        component: () => import("../views/application/EmploymentHistory.vue"),
-      },
-      {
-        path: "/:id/application/RentalHistory",
-        component: () => import("../views/application/RentalHistory.vue"),
-      },
-      {
-        path: "/:id/application/confirmation",
-        component: () => import("../views/application/Confirmation.vue"),
-      },
-    ],
-  },
+  // {
+  //   path: "/:id/application",
+  //   component: () => import("../components/ApplicationForm.vue"),
+  //   children: [
+  //     {
+  //       path: "",
+  //       component: () => import("../views/application/PersonalInfo.vue"),
+  //     },
+  //     {
+  //       path: "/:id/application/EmploymentHistory",
+  //       component: () => import("../views/application/EmploymentHistory.vue"),
+  //     },
+  //     {
+  //       path: "/:id/application/RentalHistory",
+  //       component: () => import("../views/application/RentalHistory.vue"),
+  //     },
+  //     {
+  //       path: "/:id/application/confirmation",
+  //       component: () => import("../views/application/Confirmation.vue"),
+  //     },
+  //   ],
+  // },
 ];
 
 const history = createWebHistory();
