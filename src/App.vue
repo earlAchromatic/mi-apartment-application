@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <div class="centered">
-    <router-view :units="this.units" />
+    <router-view :units="units" />
   </div>
   <span
     >Thank You for Using <a href="/">Ionia.Apartments</a>. All Are Welcome To
