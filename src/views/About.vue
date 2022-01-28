@@ -25,11 +25,13 @@
 
       <h3>Our Promise</h3>
       <p>
-        At Washington Apartments, we promise to: Return all phone calls within
-        24 business hours Complete all maintenance issues and repairs
-        efficiently, quickly, and courteously Consistently improve the aesthetic
-        look of the property Provide exceptional service and support to
-        residents
+        At Washington Apartments, we promise to: 
+        
+        <ul> 
+            <li>all phone calls within 24 business hours </li>
+               <li> Complete all maintenance issues and repairs efficiently, quickly, and courteously</li>
+               <li> Consistently improve the aesthetic look of the property Provide exceptional service and support to residents </li>
+        </ul>
       </p>
     </template>
     <template #footer>
@@ -57,4 +59,6 @@ export default {
 .p-card-content
     p
         text-align: left
+h2
+    margin: 0
 </style>

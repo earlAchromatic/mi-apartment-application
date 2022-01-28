@@ -17,7 +17,7 @@
                   currency: "USD",
                   maximumSignificantDigits: 3,
                 })
-              }}</template
+              }}/mo.</template
             >
             <template #subtitle>439 W. Washington | {{ unit.name }}</template>
             <template #content> {{ unit.longDescr }} </template>
@@ -27,7 +27,7 @@
               </router-link>
               <Button
                 v-else=""
-                label="Property Currently Rented"
+                label="Currently Rented"
                 disabled="disabled"
               ></Button>
             </template>

@@ -47,7 +47,7 @@ const units = ref([
       "Welcome home to your spacious 1,300. sq foot, two bedroom and one bathroom apartment with walk in closets and a galley kitchen. Fully equipped with a brand new washer and dryer and off-street, 2 car parking. Stay cool in the summer and warm in the winter with the forced air AC & furnace. The shady backyard access is perfect for leisure activities.",
     image: "/src/assets/unitC-feature.jpg",
     avail: false,
-    rent: 1550,
+    rent: 1200,
     sqft: 1300,
     photoJSON: "/data/unitC_photos.json",
   },

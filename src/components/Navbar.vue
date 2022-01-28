@@ -1,6 +1,10 @@
 <template>
   <header>
-    <h1>439 West Washington St</h1>
+    <h1>Ionia.Apartments</h1>
+    <small class="contact"
+      >Get ahold of us at
+      <a href="mailto:info@ionia.apartments">info@ionia.apartments</a></small
+    >
     <nav>
       <ul>
         <li>
@@ -22,12 +26,22 @@ header
     position: fixed
     width: 100%
     background: white
-    box-shadow: 2px 2px 6px black
+    box-shadow: 2px 2px 6px #00000063
     z-index: 100
     top: 0
+    display: flex
+    flex-flow: row wrap
+    h1
+        width: 100%
+        margin-bottom: 0
+    nav
+        width: 100%
+        margin: auto
+    .contact
+        margin: auto
 li
     list-style-type: none
-    margin-left: 2rem
+    margin-right: 2rem
 ul
     display: flex
     justify-content: center
