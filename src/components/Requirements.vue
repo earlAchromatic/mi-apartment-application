@@ -48,6 +48,9 @@
       </Fieldset>
       <Fieldset legend="Criminal History">
         <p>No Felonies. <b>Do You have a history of Felonies?</b></p>
+        <small class="disc"
+          >(limited exceptions may apply such as DUI or DWI)</small
+        >
       </Fieldset>
       <Fieldset legend="Landlord References">
         <p>
@@ -103,4 +106,6 @@ export default {
         display: flex
         flex-direction: row
         flex-wrap: wrap
+    .disc
+      color: rgba(0,0 ,0 ,0.25 )
 </style>
