@@ -1,4 +1,10 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  RouterScrollBehavior,
+  RouteLocationNormalized,
+  RouteLocationNormalizedLoaded,
+} from "vue-router";
 
 const routes = [
   {
@@ -50,5 +56,8 @@ const routes = [
 ];
 
 const history = createWebHistory();
+const scrollBehavior: RouterScrollBehavior = () => {
+  return { top: 0, behavior: "smooth" };
+};
 
-export default createRouter({ history, routes });
+export default createRouter({ history, routes, scrollBehavior });
