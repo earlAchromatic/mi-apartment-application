@@ -11,7 +11,7 @@
             >
             <InputText
               id="findouthow"
-              v-model="this.findouthow"
+              v-model="findouthow"
               type="text"
               :class="{
                 'p-invalid': validationErrors.findouthow && submitted,
@@ -76,7 +76,9 @@ import Button from "primevue/button";
 import Card from "primevue/card";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   data() {
     return {
       findouthow: "",
@@ -84,7 +86,7 @@ export default {
       lastname: "",
       age: null,
       submitted: false,
-      validationErrors: {},
+      validationErrors: {} as validationForm,
     };
   },
   components: { Button, Card, InputNumber, InputText },
@@ -110,5 +112,12 @@ export default {
       return !Object.keys(this.validationErrors).length;
     },
   },
-};
+});
+
+interface validationForm {
+  findouthow?: boolean;
+  firstname?: boolean;
+  lastname?: boolean;
+  age?: boolean;
+}
 </script>
