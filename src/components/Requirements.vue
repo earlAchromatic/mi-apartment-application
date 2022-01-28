@@ -85,22 +85,22 @@ export default {
     position: relative
     h2
         width: 100%
-fieldset
-    margin-bottom: 1rem
-    max-width: 25rem
+    fieldset
+        margin-bottom: 1rem
+        max-width: 25rem
 
-.fieldset p
-    line-height: 1
-    margin: 0
+    .fieldset p
+        line-height: 1
+        margin: 0
 
-.p-fieldset .p-fieldset-content
-    padding: 0
+    .p-fieldset .p-fieldset-content
+        padding: 0
 
-.p-fieldset .p-fieldset-legend
-    margin-right: auto
+    .p-fieldset .p-fieldset-legend
+        margin-right: auto
 
-.p-card-content
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
+    .p-card-content
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
 </style>

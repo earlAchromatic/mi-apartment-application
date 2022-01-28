@@ -8,9 +8,13 @@
       The application costs $40. This cost is used to cover the cost of
       background checks and administration.
     </Fieldset>
-    <Fieldset legend="How you allow pets?" :toggleable="true">
+    <Fieldset legend="Do you allow pets?" :toggleable="true">
       While pets make the world a better place, we unfortunately do not allow
       them in our apartments.
+    </Fieldset>
+    <Fieldset legend="Where are these apartments located?" :toggleable="true">
+      The units shown on this site are all located at 439 West Washington St. in
+      Ionia, Michigan.
     </Fieldset>
   </div>
 </template>

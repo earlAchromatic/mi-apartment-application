@@ -40,7 +40,7 @@
                 currency: "USD",
                 maximumSignificantDigits: 3,
               })
-            }}, not including electric and water.
+            }}, not including electric, gas, and internet.
           </small>
         </div>
 

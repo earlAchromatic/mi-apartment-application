@@ -11,7 +11,7 @@
             >
             <InputText
               id="findouthow"
-              v-model="findouthow"
+              v-model="this.findouthow"
               type="text"
               :class="{
                 'p-invalid': validationErrors.findouthow && submitted,
@@ -71,7 +71,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Button from "primevue/button";
 import Card from "primevue/card";
 import InputNumber from "primevue/inputnumber";
