@@ -26,7 +26,7 @@ const routes = [
     component: () => import("../views/PreScreen.vue"),
   },
   {
-    path: "/application",
+    path: "/:id/application",
     component: () => import("../components/ApplicationForm.vue"),
     children: [
       {
@@ -34,15 +34,15 @@ const routes = [
         component: () => import("../views/application/PersonalInfo.vue"),
       },
       {
-        path: "/application/EmploymentHistory",
+        path: "/:id/application/EmploymentHistory",
         component: () => import("../views/application/EmploymentHistory.vue"),
       },
       {
-        path: "/application/RentalHistory",
+        path: "/:id/application/RentalHistory",
         component: () => import("../views/application/RentalHistory.vue"),
       },
       {
-        path: "/application/confirmation",
+        path: "/:id/application/confirmation",
         component: () => import("../views/application/Confirmation.vue"),
       },
     ],

@@ -35,8 +35,8 @@
       </p>
     </template>
     <template #footer>
-      <router-link to="/application">
-        <Button icon="pi pi-check" label="Apply" />
+      <router-link to="/">
+        <Button icon="pi pi-check" label="Schedule A Showing Today" />
       </router-link>
     </template>
   </Card>

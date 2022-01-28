@@ -1,52 +1,64 @@
 <template>
-  <div>
+  <div class="application-offset">
     <Toast />
-
+    <h2>
+      Rental Application For 439 W. Washington | {{ this.$route.params.id }}
+    </h2>
+    <small>Ionia, Michigan, 48846</small>
+    <Divider />
+    <h3>An Equal Housing Opportunity</h3>
     <div class="card">
       <Steps :model="items" :readonly="true" />
     </div>
-
-    <router-view
-      v-slot="{ Component }"
-      :formData="formObject"
-      @prevPage="prevPage($event)"
-      @nextPage="nextPage($event)"
-      @complete="complete"
-    >
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
+    <form method="post" @submit.prevent="">
+      <router-view
+        v-slot="{ Component }"
+        :formData="formObject"
+        @prevPage="prevPage($event)"
+        @nextPage="nextPage($event)"
+        @complete="complete"
+      >
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </form>
   </div>
 </template>
 
 <script>
 import Steps from "primevue/steps";
 import Toast from "primevue/toast";
+import Divider from "primevue/divider";
+
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useToast } from "primevue/usetoast";
+import Disclaimer from "./Disclaimer.vue";
 
 export default {
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const toast = useToast();
+    const id = route.params.id;
+    console.log(id);
     const items = ref([
       {
         label: "Personal",
-        to: "/application",
+        to: "/" + id + "/application",
       },
       {
         label: "Employment History",
-        to: "/application/EmploymentHistory",
+        to: "/" + id + "/application/EmploymentHistory",
       },
       {
         label: "Rental History",
-        to: "/application/RentalHistory",
+        to: "/" + id + "/application/RentalHistory",
       },
       {
         label: "Confirmation",
-        to: "/application/confirmation",
+        to: "/" + id + "/application/confirmation",
       },
     ]);
     const formObject = ref({});
@@ -76,15 +88,20 @@ export default {
 
     return { items, formObject, nextPage, prevPage, complete };
   },
-  components: { Steps, Toast },
+  components: { Steps, Toast, Disclaimer },
 };
 </script>
 
 <style lang="sass">
+.application-offset
+  margin-top: 10rem
 ::v-deep(b)
   display: block
 
 
 ::v-deep(.p-card-body)
   padding: 2rem
+
+.stepsdemo-content
+  margin-top: 1rem
 </style>

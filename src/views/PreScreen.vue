@@ -30,7 +30,7 @@
             class="p-error"
             >Must Select A Unit.</small
           ><small class="descr" v-if="this.selectedUnit !== null"
-            >This unit is a {{ this.selectedUnit.descr }},
+            >This unit is a {{ this.selectedUnit.shortDescr }},
             {{ Number(this.selectedUnit.sqft).toLocaleString() }} square ft.
             apartment with full amenities including air conditioning and
             laundry. The rent for this unit is:
@@ -119,7 +119,7 @@
                 currency: "USD",
                 maximumSignificantDigits: 3,
               })
-            }}) as Income?</label
+            }}) per Month as Income?</label
           >
           <SelectButton
             v-model="income"
