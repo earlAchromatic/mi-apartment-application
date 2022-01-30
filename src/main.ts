@@ -100,14 +100,19 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import router from "./router/index";
-import vueGtag from "vue-gtag-next";
+import VueGtag from "vue-gtag";
 
 const app = createApp(App);
-app.use(vueGtag, {
-  property: {
-    id: "G-CGQSH4KFCM",
+app.use(router);
+app.use(
+  VueGtag,
+  {
+    config: {
+      id: "G-CGQSH4KFCM",
+    },
   },
-});
+  router
+);
 app.use(PrimeVue, { ripple: true });
 app.directive("badge", BadgeDirective);
 app.directive("tooltip", Tooltip);
@@ -207,5 +212,5 @@ app.component("VirtualScroller", VirtualScroller);
 
 app.use(ToastService);
 app.use(ConfirmationService);
-app.use(router);
+
 app.mount("#app");
