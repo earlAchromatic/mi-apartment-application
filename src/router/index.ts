@@ -5,7 +5,6 @@ import {
   RouteLocationNormalized,
   RouteLocationNormalizedLoaded,
 } from "vue-router";
-import { trackRouter } from "vue-gtag-next";
 const routes = [
   {
     path: "/",
@@ -61,9 +60,5 @@ const scrollBehavior: RouterScrollBehavior = () => {
 };
 
 const router = createRouter({ history, routes, scrollBehavior });
-
-trackRouter(router, {
-  useScreenview: true,
-});
 
 export default router;
