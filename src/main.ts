@@ -107,6 +107,8 @@ app.use(router);
 app.use(
   VueGtag,
   {
+    appName: "Ionia.Apartments-App",
+    pageTrackerScreenviewEnabled: true,
     config: {
       id: "G-CGQSH4KFCM",
     },
