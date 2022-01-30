@@ -7,6 +7,12 @@
         <div class="col-12 md:col-4">
           <Card>
             <template #header>
+              <Tag
+                v-if="unit.avail"
+                class="tag"
+                value="Newly Available!"
+                severity="danger"
+              ></Tag>
               <TourGallery :photoSrc="unit.photoJSON" />
             </template>
             <template #title>
@@ -40,12 +46,13 @@
 
 <script setup>
 import Card from "primevue/card";
+import Tag from "primevue/tag";
 import TourGallery from "../components/TourGallery.vue";
 </script>
 
 <script>
 export default {
-  components: { TourGallery },
+  components: { TourGallery, Tag },
   props: ["units"],
 };
 </script>
@@ -53,7 +60,22 @@ export default {
 <style lang="sass" scoped>
 .offset
   margin-top: 10rem
+  padding: 1rem
 h2
   font-size: 5rem
   margin: 0rem auto
+
+.tag
+  position: absolute
+  top: -0.5rem
+  left: -0.5rem
+  opacity: 0
+  z-index: 1
+  animation: 0.5s ease-in 1s fadein forwards
+
+@keyframes fadein
+  0%
+    opacity: 0
+  100%
+   opacity: 1
 </style>

@@ -92,4 +92,6 @@ a
 .grid
   .p-card-content
     text-align: left
+.p-card-header
+  position: relative
 </style>
