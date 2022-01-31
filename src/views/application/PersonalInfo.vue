@@ -1,5 +1,5 @@
 <template>
-  <div class="stepsdemo-content">
+  <div ref="root" class="stepsdemo-content">
     <Card>
       <template v-slot:title> Personal Information </template>
       <template v-slot:subtitle> Enter your personal information </template>
@@ -14,6 +14,9 @@
               :options="units"
               optionLabel="name"
               placeholder="Select a Unit"
+              :class="{
+                'p-invalid': validationErrors.selectedUnit && submitted,
+              }"
             /><small
               v-show="validationErrors.selectedUnit && submitted"
               class="p-error"
@@ -39,7 +42,18 @@
             </div>
             <div class="field col-12 md:col-2">
               <label for="middlename">Middle Name</label>
-              <InputNumber id="middlename" v-model="middlename" />
+              <InputText
+                id="middlename"
+                v-model="middlename"
+                :class="{
+                  'p-invalid': validationErrors.middlename && submitted,
+                }"
+              />
+              <small
+                v-show="validationErrors.middlename && submitted"
+                class="p-error"
+                >Middle Name is required.</small
+              >
             </div>
             <div class="field col-12 md:col-2">
               <label for="lastname">Last Name</label>
@@ -61,19 +75,63 @@
               <h4>Current Address</h4>
               <div class="field col-12 md:col-8">
                 <label for="address">Street Address</label>
-                <InputNumber id="address" v-model="address" />
+                <InputText
+                  id="address"
+                  v-model="address"
+                  :class="{
+                    'p-invalid': validationErrors.address && submitted,
+                  }"
+                />
+                <small
+                  v-show="validationErrors.address && submitted"
+                  class="p-error"
+                  >Street Address is required.</small
+                >
               </div>
+
               <div class="field col-12 md:col-4">
                 <label for="city">City</label>
-                <InputNumber id="city" v-model="city" />
+                <InputText
+                  id="city"
+                  v-model="city"
+                  :class="{
+                    'p-invalid': validationErrors.city && submitted,
+                  }"
+                />
+                <small
+                  v-show="validationErrors.city && submitted"
+                  class="p-error"
+                  >City is required.</small
+                >
               </div>
               <div class="field col-12 md:col-8">
                 <label for="state">State</label>
-                <InputNumber id="state" v-model="state" />
+                <InputText
+                  id="state"
+                  v-model="state"
+                  :class="{
+                    'p-invalid': validationErrors.state && submitted,
+                  }"
+                />
+                <small
+                  v-show="validationErrors.state && submitted"
+                  class="p-error"
+                  >State is required.</small
+                >
               </div>
               <div class="field col-12 md:col-4">
                 <label for="zip">Zip Code</label>
-                <InputNumber id="zip" v-model="zip" />
+                <InputText
+                  id="zip"
+                  v-model="zip"
+                  :class="{
+                    'p-invalid': validationErrors.zip && submitted,
+                  }"
+                /><small
+                  v-show="validationErrors.zip && submitted"
+                  class="p-error"
+                  >Zip Code is required.</small
+                >
               </div>
             </div>
 
@@ -81,48 +139,156 @@
               <h4>Contact</h4>
               <div class="field col-12 md:col-4">
                 <label for="homephone">Home Phone</label>
-                <InputNumber id="homephone" v-model="homephone" />
+                <InputMask
+                  mask="999-999-9999"
+                  id="homephone"
+                  v-model="homephone"
+                  :class="{
+                    'p-invalid': validationErrors.homephone && submitted,
+                  }"
+                /><small
+                  v-show="validationErrors.homephone && submitted"
+                  class="p-error"
+                  >Your Home Phone is required.</small
+                >
               </div>
               <div class="field col-12 md:col-4">
                 <label for="cellphone">Cell Phone</label>
-                <InputNumber id="cellphone" v-model="cellphone" />
+                <InputMask
+                  mask="999-999-9999"
+                  id="cellphone"
+                  v-model="cellphone"
+                  :class="{
+                    'p-invalid': validationErrors.cellphone && submitted,
+                  }"
+                />
+                <small
+                  v-show="validationErrors.cellphone && submitted"
+                  class="p-error"
+                  >Your Cell Phone is required.</small
+                >
               </div>
               <div class="field col-12 md:col-4">
                 <label for="workphone">Work Phone</label>
-                <InputNumber id="workphone" v-model="workphone" />
+                <InputMask
+                  mask="999-999-9999"
+                  id="workphone"
+                  v-model="workphone"
+                  :class="{
+                    'p-invalid': validationErrors.workphone && submitted,
+                  }"
+                /><small
+                  v-show="validationErrors.workphone && submitted"
+                  class="p-error"
+                  >Your Work Phone is required.</small
+                >
               </div>
               <div class="field col-12 md:col-6">
                 <label for="email">Email</label>
-                <InputNumber id="email" v-model="email" />
+                <InputText
+                  id="email"
+                  v-model="email"
+                  :class="{
+                    'p-invalid': validationErrors.email && submitted,
+                  }"
+                /><small
+                  v-show="validationErrors.homephone && submitted"
+                  class="p-error"
+                  >Your Email is required.</small
+                >
               </div>
             </div>
             <div class="field col-12 md:col-6">
               <label for="social">Social Security Number</label>
-              <InputNumber id="social" v-model="social" />
+              <InputMask
+                mask="999-99-9999"
+                id="social"
+                v-model="social"
+                :class="{
+                  'p-invalid': validationErrors.social && submitted,
+                }"
+              /><small
+                v-show="validationErrors.social && submitted"
+                class="p-error"
+                >Social Security Number is required.</small
+              >
             </div>
             <div class="field col-12 md:col-6">
-              <label for="bday">Date of Birth</label>
-              <InputNumber id="bday" v-model="bday" />
+              <label for="bday">Date of Birth (mm/dd/yyyy)</label>
+              <InputMask
+                mask="99/99/9999"
+                id="bday"
+                v-model="bday"
+                :class="{
+                  'p-invalid': validationErrors.bday && submitted,
+                }"
+              /><small
+                v-show="validationErrors.bday && submitted"
+                class="p-error"
+                >Date of Birth is required.</small
+              >
             </div>
             <div class="field col-12 md:col-6">
               <label for="license">Driver's License</label>
-              <InputNumber id="license" v-model="license" />
+              <InputMask
+                mask="a 999 999 999 999"
+                id="license"
+                v-model="license"
+                :class="{
+                  'p-invalid': validationErrors.license && submitted,
+                }"
+              /><small
+                v-show="validationErrors.license && submitted"
+                class="p-error"
+                >Driver's License Number is required.</small
+              >
             </div>
           </div>
 
           <h3>Vehicle Information</h3>
           <div class="grid p-fluid">
             <div class="field col-12 md:col-6">
-              <label for="make">vehicle Make</label>
-              <InputNumber id="carmake" v-model="make" />
+              <label for="carmake">Make</label>
+              <InputText
+                id="carmake"
+                v-model="carmake"
+                :class="{
+                  'p-invalid': validationErrors.carmake && submitted,
+                }"
+              /><small
+                v-show="validationErrors.carmake && submitted"
+                class="p-error"
+                >Vehicle Make is required.</small
+              >
             </div>
             <div class="field col-12 md:col-6">
-              <label for="model">Model</label>
-              <InputNumber id="carmodel" v-model="model" />
+              <label for="carmodel">Model</label>
+              <InputText
+                id="carmodel"
+                v-model="carmodel"
+                :class="{
+                  'p-invalid': validationErrors.carmodel && submitted,
+                }"
+              /><small
+                v-show="validationErrors.carmodel && submitted"
+                class="p-error"
+                >Vehicle Model is required.</small
+              >
             </div>
             <div class="field col-12 md:col-6">
-              <label for="year">Year</label>
-              <InputNumber id="caryear" v-model="year" />
+              <label for="caryear">Year</label>
+              <InputMask
+                mask="9999"
+                id="caryear"
+                v-model="caryear"
+                :class="{
+                  'p-invalid': validationErrors.caryear && submitted,
+                }"
+              /><small
+                v-show="validationErrors.caryear && submitted"
+                class="p-error"
+                >Vehicle Year is required.</small
+              >
             </div>
           </div>
         </div>
@@ -145,37 +311,51 @@
 </template>
 
 <script>
-import Button from "primevue/button";
-import Card from "primevue/card";
-import InputNumber from "primevue/inputnumber";
-import InputText from "primevue/inputtext";
-import Disclaimer from "../../components/Disclaimer.vue";
-import Divider from "primevue/divider";
-import { defineComponent } from "vue";
+import Button from 'primevue/button';
+import Card from 'primevue/card';
+import InputNumber from 'primevue/inputnumber';
+import InputText from 'primevue/inputtext';
+import InputMask from 'primevue/inputmask';
+import Disclaimer from '../../components/Disclaimer.vue';
+import Divider from 'primevue/divider';
+import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({
-  props: ["units"],
+  setup() {
+    const root = ref(null);
+
+    onMounted(() => {
+      // the DOM element will be assigned to the ref after initial render
+      console.log(root.value); // this is your $el
+    });
+
+    return {
+      root,
+    };
+  },
+  props: ['units'],
   data() {
     return {
-      selectedUnits: null,
-      middlename: "",
-      firstname: "",
-      lastname: "",
-      unit: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: "",
-      homephone: "",
-      workphone: "",
-      cellphone: "",
-      email: "",
-      social: "",
-      bday: "",
-      license: "",
-      carmake: "",
-      carmodel: "",
-      caryear: "",
+      units: this.units,
+      selectedUnit: null,
+      middlename: '',
+      firstname: '',
+      lastname: '',
+      unit: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: null,
+      homephone: null,
+      workphone: null,
+      cellphone: null,
+      email: '',
+      social: '',
+      bday: '',
+      license: '',
+      carmake: '',
+      carmodel: '',
+      caryear: '',
       submitted: false,
       validationErrors: {},
     };
@@ -185,7 +365,7 @@ export default defineComponent({
     nextPage() {
       this.submitted = true;
       if (this.validateForm()) {
-        this.$emit("next-page", {
+        this.$emit('next-page', {
           formData: {
             firstname: this.firstname,
             lastname: this.lastname,
@@ -196,12 +376,59 @@ export default defineComponent({
       }
     },
     validateForm() {
-      if (!this.firstname.trim()) this.validationErrors["firstname"] = true;
-      else delete this.validationErrors["firstname"];
-      if (!this.lastname.trim()) this.validationErrors["lastname"] = true;
-      else delete this.validationErrors["lastname"];
+      function scrollToTop() {
+        window.scrollTo({
+          top: 100,
+          behavior: 'smooth',
+        });
+      }
+
+      function validate(nameArray) {
+        nameArray.forEach((name) => {
+          console.log(name);
+          if (!this[name]) {
+            this.validationErrors[name] = true;
+            scrollToTop();
+          } else delete this.validationErrors[name];
+        });
+      }
+
+      let validateContext = validate.bind(this);
+
+      let toValidate = [
+        'selectedUnit',
+        'firstname',
+        'middlename',
+        'lastname',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'social',
+        'email',
+        'bday',
+        'carmake',
+        'carmodel',
+        'caryear',
+        'license',
+        'homephone',
+        'cellphone',
+        'workphone',
+      ];
+
+      validateContext(toValidate);
+
       return !Object.keys(this.validationErrors).length;
     },
+  },
+  mounted() {
+    if (this.$route.params.id) {
+      let id = this.$route.params.id;
+      let unit = this.units.filter((e) => {
+        return e.name === id;
+      });
+      this.selectedUnit = unit[0];
+    }
   },
 });
 </script>

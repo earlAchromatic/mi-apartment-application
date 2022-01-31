@@ -17,6 +17,7 @@
         @prevPage="prevPage($event)"
         @nextPage="nextPage($event)"
         @complete="complete"
+        :units="units"
       >
         <keep-alive>
           <component :is="Component" />
@@ -27,14 +28,14 @@
 </template>
 
 <script>
-import Steps from "primevue/steps";
-import Toast from "primevue/toast";
-import Divider from "primevue/divider";
+import Steps from 'primevue/steps';
+import Toast from 'primevue/toast';
+import Divider from 'primevue/divider';
 
-import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { useToast } from "primevue/usetoast";
-import Disclaimer from "./Disclaimer.vue";
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useToast } from 'primevue/usetoast';
+import Disclaimer from './Disclaimer.vue';
 
 export default {
   setup() {
@@ -45,20 +46,20 @@ export default {
     console.log(id);
     const items = ref([
       {
-        label: "Personal",
-        to: "/" + id + "/application",
+        label: 'Personal',
+        to: '/' + id + '/application',
       },
       {
-        label: "Employment History",
-        to: "/" + id + "/application/EmploymentHistory",
+        label: 'Employment History',
+        to: '/' + id + '/application/EmploymentHistory',
       },
       {
-        label: "Rental History",
-        to: "/" + id + "/application/RentalHistory",
+        label: 'Rental History',
+        to: '/' + id + '/application/RentalHistory',
       },
       {
-        label: "Confirmation",
-        to: "/" + id + "/application/confirmation",
+        label: 'Confirmation',
+        to: '/' + id + '/application/confirmation',
       },
     ]);
     const formObject = ref({});
@@ -75,19 +76,20 @@ export default {
     };
     const complete = () => {
       toast.add({
-        severity: "success",
-        summary: "Order submitted",
+        severity: 'success',
+        summary: 'Order submitted',
         detail:
-          "Dear, " +
+          'Dear, ' +
           formObject.value.firstname +
-          " " +
+          ' ' +
           formObject.value.lastname +
-          " your order completed.",
+          ' your order completed.',
       });
     };
 
     return { items, formObject, nextPage, prevPage, complete };
   },
+  props: ['units'],
   components: { Steps, Toast, Disclaimer },
 };
 </script>
