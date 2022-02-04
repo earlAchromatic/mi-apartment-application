@@ -35,9 +35,9 @@
             apartment with full amenities including air conditioning and
             laundry. The rent for this unit is:
             {{
-              Number(this.selectedUnit.rent).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
+              Number(this.selectedUnit.rent).toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
                 maximumSignificantDigits: 3,
               })
             }}, not including electric, gas, and internet.
@@ -114,9 +114,9 @@
             >Do You Have At Least 3x Rent ({{
               Number(
                 this.selectedUnit ? this.selectedUnit.rent * 3 : 3600
-              ).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
+              ).toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
                 maximumSignificantDigits: 3,
               })
             }}) per Month as Income?</label
@@ -244,12 +244,12 @@
 </template>
 
 <script>
-import InputNumber from "primevue/inputnumber";
-import InputText from "primevue/inputtext";
-import Requirements from "../components/Requirements.vue";
-import Button from "primevue/button";
-import Divider from "primevue/divider";
-import TriStateCheckbox from "primevue/tristatecheckbox";
+import InputNumber from 'primevue/inputnumber';
+import InputText from 'primevue/inputtext';
+import Requirements from '../components/Requirements.vue';
+import Button from 'primevue/button';
+import Divider from 'primevue/divider';
+import TriStateCheckbox from 'primevue/tristatecheckbox';
 
 export default {
   components: {
@@ -260,16 +260,16 @@ export default {
     Divider,
     TriStateCheckbox,
   },
-  props: ["units"],
+  props: ['units'],
   data() {
     return {
       selectedUnit: null,
       units: this.units,
-      findouthow: "",
-      firstname: "",
-      lastname: "",
-      phone: "",
-      email: "",
+      findouthow: '',
+      firstname: '',
+      lastname: '',
+      phone: '',
+      email: '',
       income: null,
       credit: null,
       felony: null,
@@ -287,11 +287,11 @@ export default {
     handleSubmit() {
       this.submitted = true;
       if (this.validateForm()) {
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: this.encode({
-            "form-name": "Prescreen",
+            'form-name': 'Prescreen',
             unit: this.selectedUnit.name,
             findouthow: this.findouthow,
             firstname: this.firstname,
@@ -310,74 +310,74 @@ export default {
           }),
         })
           .then(() => {
-            this.$router.push("thanks");
+            this.$router.push('thanks');
           })
           .catch(() => {
-            this.$router.push("404");
+            this.$router.push('404');
           });
       }
     },
     validateForm() {
       if (!this.selectedUnit) {
-        this.validationErrors["selectedUnit"] = true;
-      } else delete this.validationErrors["selectedUnit"];
+        this.validationErrors['selectedUnit'] = true;
+      } else delete this.validationErrors['selectedUnit'];
 
       if (!this.findouthow.trim()) {
-        this.validationErrors["findouthow"] = true;
-      } else delete this.validationErrors["findouthow"];
+        this.validationErrors['findouthow'] = true;
+      } else delete this.validationErrors['findouthow'];
 
       if (!this.firstname.trim()) {
-        this.validationErrors["firstname"] = true;
-      } else delete this.validationErrors["firstname"];
+        this.validationErrors['firstname'] = true;
+      } else delete this.validationErrors['firstname'];
 
       if (!this.lastname.trim()) {
-        this.validationErrors["lastname"] = true;
-      } else delete this.validationErrors["lastname"];
+        this.validationErrors['lastname'] = true;
+      } else delete this.validationErrors['lastname'];
 
       if (!this.phone) {
-        this.validationErrors["phone"] = true;
-      } else delete this.validationErrors["phone"];
+        this.validationErrors['phone'] = true;
+      } else delete this.validationErrors['phone'];
 
-      if (this.email === "" || !this.email.includes("@")) {
+      if (this.email === '' || !this.email.includes('@')) {
         console.log(this.email);
-        this.validationErrors["email"] = true;
-      } else delete this.validationErrors["email"];
+        this.validationErrors['email'] = true;
+      } else delete this.validationErrors['email'];
 
       if (this.income === null) {
-        this.validationErrors["income"] = true;
-      } else delete this.validationErrors["income"];
+        this.validationErrors['income'] = true;
+      } else delete this.validationErrors['income'];
 
       if (this.credit === null) {
-        this.validationErrors["credit"] = true;
-      } else delete this.validationErrors["credit"];
+        this.validationErrors['credit'] = true;
+      } else delete this.validationErrors['credit'];
 
       if (this.felony === null) {
-        this.validationErrors["felony"] = true;
-      } else delete this.validationErrors["felony"];
+        this.validationErrors['felony'] = true;
+      } else delete this.validationErrors['felony'];
 
       if (this.landlord === null) {
-        this.validationErrors["landlord"] = true;
-      } else delete this.validationErrors["landlord"];
+        this.validationErrors['landlord'] = true;
+      } else delete this.validationErrors['landlord'];
 
       if (this.smoker === null) {
-        this.validationErrors["smoker"] = true;
-      } else delete this.validationErrors["smoker"];
+        this.validationErrors['smoker'] = true;
+      } else delete this.validationErrors['smoker'];
 
       if (this.pets === null) {
-        this.validationErrors["pets"] = true;
-      } else delete this.validationErrors["pets"];
+        this.validationErrors['pets'] = true;
+      } else delete this.validationErrors['pets'];
 
       if (this.evictions === null) {
-        this.validationErrors["evictions"] = true;
-      } else delete this.validationErrors["evictions"];
+        this.validationErrors['evictions'] = true;
+      } else delete this.validationErrors['evictions'];
 
       if (this.bg === null) {
-        this.validationErrors["bg"] = true;
-      } else delete this.validationErrors["bg"];
+        this.validationErrors['bg'] = true;
+      } else delete this.validationErrors['bg'];
 
       if (this.fee === null) {
-        this.validationErrors["fee"] = true;
-      } else delete this.validationErrors["fee"];
+        this.validationErrors['fee'] = true;
+      } else delete this.validationErrors['fee'];
 
       return !Object.keys(this.validationErrors).length;
     },
@@ -386,7 +386,7 @@ export default {
         .map(
           (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
         )
-        .join("&");
+        .join('&');
     },
   },
   mounted() {
