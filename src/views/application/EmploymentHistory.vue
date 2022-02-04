@@ -28,6 +28,7 @@
               showButtons
               buttonLayout="stacked"
               :step="0.25"
+              :min="0"
               id="currentEmploymentLength"
               v-model="currentEmploymentLength"
               :class="{
@@ -165,6 +166,7 @@
                 showButtons
                 buttonLayout="stacked"
                 :step="0.25"
+                :min="0"
                 id="previousEmploymentLength"
                 v-model="previousEmploymentLength"
                 :class="{
@@ -292,7 +294,7 @@
             <small
               v-show="validationErrors.otherIncome && submitted"
               class="p-error"
-              >Other Income is required.</small
+              >Yes or No is required.</small
             >
           </div>
           <template v-if="this.otherIncome === 'yes'">
@@ -432,8 +434,11 @@ export default {
         });
       }
 
-      if (this.otherIncome) {
+      if (this.otherIncome === null || this.otherIncome === '') {
         validateContext(['incomeSources', 'incomeFromSources']);
+      } else {
+        delete this.validationErrors['incomeSources'];
+        delete this.validationErrors['incomeFromSources'];
       }
 
       return !Object.keys(this.validationErrors).length;
@@ -442,7 +447,27 @@ export default {
       this.submitted = true;
       if (this.validateForm()) {
         this.$emit('next-page', {
-          formData: {},
+          formData: {
+            currentEmployer: this.currentEmployer,
+            currentEmployerPhone: this.currentEmployerPhone,
+            currentEmployerAddress: this.currentEmployerAddress,
+            currentEmploymentLength: this.currentEmploymentLength,
+            currentPosition: this.currentPosition,
+            currentMonthlyIncome: this.currentMonthlyIncome,
+            currentSupervisor: this.currentSupervisor,
+            currentEmployerEmail: this.currentEmployerEmail,
+            previousEmployer: this.previousEmployer,
+            previousEmployerPhone: this.previousEmployerPhone,
+            previousEmployerAddress: this.previousEmployerAddress,
+            previousEmploymentLength: this.previousEmploymentLength,
+            previousPosition: this.previousPosition,
+            previousMonthlyIncome: this.previousMonthlyIncome,
+            previousSupervisor: this.previousSupervisor,
+            previousEmployerEmail: this.previousEmployerEmail,
+            otherIncome: this.otherIncome,
+            incomeSources: this.incomeSources,
+            incomeFromSources: this.incomeFromSources,
+          },
           pageIndex: 1,
         });
       }

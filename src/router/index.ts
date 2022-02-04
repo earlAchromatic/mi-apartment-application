@@ -7,12 +7,18 @@ import {
 } from 'vue-router';
 const routes = [
   {
+    name: 'home',
     path: '/',
     component: () => import('../views/Home.vue'),
   },
-  { path: '/about', component: () => import('../views/About.vue') },
-  { path: '/FAQ', component: () => import('../views/FAQ.vue') },
   {
+    name: 'about',
+    path: '/about',
+    component: () => import('../views/About.vue'),
+  },
+  { name: 'faq', path: '/FAQ', component: () => import('../views/FAQ.vue') },
+  {
+    name: 'screen',
     path: '/screen',
     component: () => import('../views/PreScreen.vue'),
   },
@@ -27,26 +33,37 @@ const routes = [
     component: () => import('../components/SubmissionFail.vue'),
   },
   {
+    name: 'screen',
     path: '/:id/screen',
     component: () => import('../views/PreScreen.vue'),
   },
   {
+    name: 'application',
     path: '/:id/application',
     component: () => import('../components/ApplicationForm.vue'),
     children: [
       {
+        name: 'personal info',
         path: '',
         component: () => import('../views/application/PersonalInfo.vue'),
       },
       {
+        name: 'emplyment history',
         path: '/:id/application/EmploymentHistory',
         component: () => import('../views/application/EmploymentHistory.vue'),
       },
       {
+        name: 'rental history',
         path: '/:id/application/RentalHistory',
         component: () => import('../views/application/RentalHistory.vue'),
       },
       {
+        name: 'other info',
+        path: '/:id/application/Other',
+        component: () => import('../views/application/Other.vue'),
+      },
+      {
+        name: 'confirmation',
         path: '/:id/application/confirmation',
         component: () => import('../views/application/Confirmation.vue'),
       },

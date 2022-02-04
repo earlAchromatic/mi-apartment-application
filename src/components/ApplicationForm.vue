@@ -58,6 +58,10 @@ export default {
         to: '/' + id + '/application/RentalHistory',
       },
       {
+        label: 'Other',
+        to: '/' + id + '/application/Other',
+      },
+      {
         label: 'Confirmation',
         to: '/' + id + '/application/confirmation',
       },

@@ -367,9 +367,24 @@ export default defineComponent({
       if (this.validateForm()) {
         this.$emit('next-page', {
           formData: {
+            selectedUnit: this.selectedUnit,
+            middlename: this.middlename,
             firstname: this.firstname,
             lastname: this.lastname,
-            age: this.age,
+            address: this.address,
+            city: this.city,
+            state: this.state,
+            zip: this.zip,
+            homephone: this.homephone,
+            workphone: this.workphone,
+            cellphone: this.cellphone,
+            email: this.email,
+            social: this.social,
+            bday: this.bday,
+            license: this.license,
+            carmake: this.carmake,
+            carmodel: this.carmodel,
+            caryear: this.caryear,
           },
           pageIndex: 0,
         });

@@ -28,6 +28,7 @@
               showButtons
               buttonLayout="stacked"
               :step="0.25"
+              :min="0"
               id="currentYearsLived"
               v-model="currentYearsLived"
               :class="{
@@ -172,6 +173,7 @@
               mode="decimal"
               showButtons
               buttonLayout="stacked"
+              :min="0"
               :step="0.25"
               id="secondLastYearsLived"
               v-model="secondLastYearsLived"
@@ -333,6 +335,7 @@
                 showButtons
                 buttonLayout="stacked"
                 :step="0.25"
+                :min="0"
                 id="thirdLastYearsLived"
                 v-model="thirdLastYearsLived"
                 :class="{
@@ -639,7 +642,37 @@ export default {
       this.submitted = true;
       if (this.validateForm()) {
         this.$emit('next-page', {
-          formData: {},
+          formData: {
+            currentLandlord: this.currentLandlord,
+            currentYearsLived: this.currentYearsLived,
+            currentLandlordPhone: this.currentLandlordPhone,
+            currentLandlordEmail: this.currentLandlordEmail,
+            currentLandlordAddress: this.currentLandlordAddress,
+            currentLandlordCity: this.currentLandlordCity,
+            currentLandlordState: this.currentLandlordState,
+            currentReasonLeaving: this.currentReasonLeaving,
+            currentLeaseExp: this.currentLeaseExp,
+            secondLastLandlord: this.secondLastLandlord,
+            secondLastYearsLived: this.secondLastYearsLived,
+            secondLastLandlordPhone: this.secondLastLandlordPhone,
+            secondLastLandlordEmail: this.secondLastLandlordEmail,
+            secondLastLandlordAddress: this.secondLastLandlordAddress,
+            secondLastLandlordCity: this.secondLastLandlordCity,
+            secondLastLandlordState: this.secondLastLandlordState,
+            secondLastLeaseExp: this.secondLastLeaseExp,
+            secondLastReasonLeaving: this.secondLastReasonLeaving,
+            thirdLastLandlord: this.thirdLastLandlord,
+            thirdLastYearsLived: this.thirdLastYearsLived,
+            thirdLastLandlordPhone: this.thirdLastLandlordPhone,
+            thirdLastLandlordEmail: this.thirdLastLandlordEmail,
+            thirdLastLandlordAddress: this.thirdLastLandlordAddress,
+            thirdLastLandlordCity: this.thirdLastLandlordCity,
+            thirdLastLandlordState: this.thirdLastLandlordState,
+            thirdLastLeaseExp: this.thirdLastLeaseExp,
+            thirdLastReasonLeaving: this.thirdLastReasonLeaving,
+            eviction: this.eviction,
+            explain: this.explain,
+          },
           pageIndex: 2,
         });
       }
