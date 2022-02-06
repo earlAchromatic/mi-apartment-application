@@ -29,6 +29,7 @@
               buttonLayout="stacked"
               :step="0.25"
               :min="0"
+              placeholder="0"
               id="currentYearsLived"
               v-model="currentYearsLived"
               :class="{
@@ -175,6 +176,7 @@
               buttonLayout="stacked"
               :min="0"
               :step="0.25"
+              placeholder="0"
               id="secondLastYearsLived"
               v-model="secondLastYearsLived"
               :class="{
@@ -336,6 +338,7 @@
                 buttonLayout="stacked"
                 :step="0.25"
                 :min="0"
+                placeholder="0"
                 id="thirdLastYearsLived"
                 v-model="thirdLastYearsLived"
                 :class="{

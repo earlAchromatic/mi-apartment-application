@@ -7,25 +7,25 @@
         <h3>Current Home</h3>
         <div class="p-fluid grid">
           <div class="field col-12 md:col-2">
-            <label for="currentLandlord"
+            <label for="occupantCount"
               >Number of Occupants Covered by Application:</label
             >
             <InputNumber
-              id="OccupantCount"
+              id="occupantCount"
               mode="decimal"
               showButtons
               buttonLayout="stacked"
               :min="0"
               :max="10"
               :step="1"
-              v-model="OccupantCount"
+              v-model="occupantCount"
               placeholder="0"
               :class="{
-                'p-invalid': validationErrors.OccupantCount && submitted,
+                'p-invalid': validationErrors.occupantCount && submitted,
               }"
             />
             <small
-              v-show="validationErrors.OccupantCount && submitted"
+              v-show="validationErrors.occupantCount && submitted"
               class="p-error"
               >Occupant Count is required.</small
             >
@@ -107,16 +107,16 @@
               >
             </div>
             <div class="field col-12 md:col-4">
-              <label for="CaseWorker">Case Worker</label>
+              <label for="caseWorker">Case Worker</label>
               <InputText
-                id="CaseWorker"
-                v-model="CaseWorker"
+                id="caseWorker"
+                v-model="caseWorker"
                 :class="{
-                  'p-invalid': validationErrors.CaseWorker && submitted,
+                  'p-invalid': validationErrors.caseWorker && submitted,
                 }"
               />
               <small
-                v-show="validationErrors.CaseWorker && submitted"
+                v-show="validationErrors.caseWorker && submitted"
                 class="p-error"
                 >Case Worker is required.</small
               >
@@ -564,12 +564,12 @@ export default {
       ],
       units: this.units,
       voucher: null,
-      OccupantCount: null,
+      occupantCount: null,
       desiredMovein: '',
       cosigner: '',
       agency: '',
       agencyPhone: '',
-      CaseWorker: '',
+      caseWorker: '',
       creditors: '',
       policeCalled: '',
       sexOffender: null,
@@ -628,7 +628,6 @@ export default {
 
       function validate(nameArray) {
         nameArray.forEach((name) => {
-          console.log(name);
           if (!this[name]) {
             this.validationErrors[name] = true;
             scrollToTop();
@@ -640,7 +639,7 @@ export default {
 
       let toValidate = [
         'voucher',
-        'OccupantCount',
+        'occupantCount',
         'desiredMovein',
         'cosigner',
         'creditors',
@@ -701,12 +700,12 @@ export default {
           formData: {
             occupantList: this.occupantList,
             voucher: this.voucher,
-            OccupantCount: this.occupantCount,
+            occupantCount: this.occupantCount,
             desiredMovein: this.desiredMovein,
             cosigner: this.cosigner,
             agency: this.agency,
             agencyPhone: this.agencyPhone,
-            CaseWorker: this.CaseWorker,
+            caseWorker: this.caseWorker,
             creditors: this.creditors,
             policeCalled: this.policeCalled,
             sexOffender: this.sexOffender,
