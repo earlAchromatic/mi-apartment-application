@@ -28,7 +28,7 @@ const routes = [
     component: () => import('../components/SubmissionSuccess.vue'),
   },
   {
-    path: '/404',
+    path: '/:catchAll(.*)/404',
     name: 'fail',
     component: () => import('../components/SubmissionFail.vue'),
   },

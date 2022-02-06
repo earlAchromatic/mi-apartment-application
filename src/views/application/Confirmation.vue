@@ -361,6 +361,50 @@
       </template>
       <template v-slot:footer>
         <Disclaimer />
+        <div class="p-fluid grid binding">
+          <div class="field col-12">
+            <label for="datestamp">Today's Date:</label>
+            <InputMask
+              mask="99/99/9999"
+              id="datestamp"
+              v-bind:placeholder="datestamp"
+              :disabled="true"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="consent"
+              >By checking this box, I acknowledge that this electronic
+              signature is the legal equivalent of my manual signature on this
+              rental application.</label
+            >
+            <Checkbox
+              v-model="consent"
+              id="consent"
+              :binary="true"
+              :class="{
+                'p-invalid': validationErrors.consent && submitted,
+              }"
+            /><small
+              v-show="validationErrors.consent && submitted"
+              class="p-error"
+              >Your Acknowledgement is required.</small
+            >
+          </div>
+          <div class="field col-12">
+            <label for="signature">Signature (full name)</label>
+            <InputText
+              v-model="signature"
+              id="signature"
+              :class="{
+                'p-invalid': validationErrors.signature && submitted,
+              }"
+            /><small
+              v-show="validationErrors.signature && submitted"
+              class="p-error"
+              >Your Signature is required.</small
+            >
+          </div>
+        </div>
         <div class="grid grid-nogutter justify-content-between">
           <Button label="Back" @click="prevPage()" icon="pi pi-angle-left" />
           <Button
@@ -379,8 +423,21 @@
 <script>
 import Card from 'primevue/card';
 import Disclaimer from '../../components/Disclaimer.vue';
+import InputText from 'primevue/inputtext';
+import Checkbox from 'primevue/checkbox';
+import InputMask from 'primevue/inputmask';
+
 export default {
-  components: { Card, Disclaimer },
+  data() {
+    return {
+      datestamp: new Date().toLocaleDateString('en-US'),
+      consent: '',
+      signature: '',
+      submitted: false,
+      validationErrors: {},
+    };
+  },
+  components: { InputText, InputMask, Checkbox, Card, Disclaimer },
   props: {
     formData: Object,
   },
@@ -389,7 +446,30 @@ export default {
       this.$emit('prev-page', { pageIndex: 4 });
     },
     complete() {
-      this.$emit('complete');
+      if (this.validateForm()) {
+        this.$emit('complete', {
+          datestamp: this.datestamp,
+          consent: this.consent,
+          signature: this.signature,
+        });
+      }
+      this.submitted = true;
+    },
+
+    validateForm() {
+      function validate(nameArray) {
+        nameArray.forEach((name) => {
+          console.log(name);
+          if (!this[name]) {
+            this.validationErrors[name] = true;
+          } else delete this.validationErrors[name];
+        });
+      }
+
+      let validateContext = validate.bind(this);
+      validateContext(['consent', 'signature']);
+
+      return !Object.keys(this.validationErrors).length;
     },
   },
 };
@@ -398,4 +478,9 @@ export default {
 <style lang="sass">
 .field
   flex-direction: column
+
+.binding
+  margin: 0 auto
+  text-align: left
+  max-width: 60%
 </style>
