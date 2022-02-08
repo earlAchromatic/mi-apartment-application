@@ -48,7 +48,7 @@ const routes = [
         component: () => import('../views/application/PersonalInfo.vue'),
       },
       {
-        name: 'emplyment history',
+        name: 'employment history',
         path: '/:id/application/EmploymentHistory',
         component: () => import('../views/application/EmploymentHistory.vue'),
       },
