@@ -5,8 +5,8 @@
       <b>Yes</b>, we do.
     </Fieldset>
     <Fieldset legend="How much does the application cost?" :toggleable="true">
-      <b>The application costs $40.</b> This cost is used to cover the cost of
-      background checks and administration.
+      <b>The application costs $25 per applicant.</b> This cost is used to cover
+      the cost of background checks and administration.
     </Fieldset>
     <Fieldset legend="Do you allow pets?" :toggleable="true">
       While pets make the world a better place, we unfortunately
@@ -28,13 +28,13 @@
       Trash are the tenant's responsibility.
     </Fieldset>
     <Fieldset legend="How much is the security deposit?" :toggleable="true">
-      The security deposit is <b>1.5x the price of rent.</b>
+      The security deposit is <b>1x the price of rent.</b>
     </Fieldset>
   </div>
 </template>
 
 <script>
-import Fieldset from "primevue/fieldset";
+import Fieldset from 'primevue/fieldset';
 export default {
   components: { Fieldset },
 };

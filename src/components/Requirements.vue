@@ -2,24 +2,24 @@
   <Card class="req">
     <template #content>
       <h2>
-        Do You Qualify to Rent {{ this.unit ? this.unit.name : "This Unit" }}?
+        Do You Qualify to Rent {{ this.unit ? this.unit.name : 'This Unit' }}?
       </h2>
       <Fieldset legend="Income">
         <p>
           Must be 3x Rent Total. For This Unit, that number is 3 x
           {{
-            Number(this.unit ? this.unit.rent : 1000).toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
+            Number(this.unit ? this.unit.rent : 1000).toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
               maximumSignificantDigits: 3,
             })
           }}/mo. =
           {{
             Number(this.unit ? this.unit.rent * 3 : 3000).toLocaleString(
-              "en-US",
+              'en-US',
               {
-                style: "currency",
-                currency: "USD",
+                style: 'currency',
+                currency: 'USD',
                 maximumSignificantDigits: 3,
               }
             )
@@ -28,10 +28,10 @@
             >Do you make at least
             {{
               Number(this.unit ? this.unit.rent * 3 : 3000).toLocaleString(
-                "en-US",
+                'en-US',
                 {
-                  style: "currency",
-                  currency: "USD",
+                  style: 'currency',
+                  currency: 'USD',
                   maximumSignificantDigits: 3,
                 }
               )
@@ -54,8 +54,8 @@
       </Fieldset>
       <Fieldset legend="Landlord References">
         <p>
-          Must Have Good References From Past 3 Landlords.
-          <b>Do You Have At Least 3 Good Landlord References?</b>
+          Must Have Good References From Past 2-3 Landlords.
+          <b>Do You Have At Least 2-3 Good Landlord References?</b>
         </p>
       </Fieldset>
       <Fieldset legend="Misc">
@@ -73,11 +73,11 @@
 </template>
 
 <script>
-import Card from "primevue/card ";
-import Fieldset from "primevue/fieldset";
+import Card from 'primevue/card ';
+import Fieldset from 'primevue/fieldset';
 export default {
   components: { Card, Fieldset },
-  props: ["unit"],
+  props: ['unit'],
 };
 </script>
 

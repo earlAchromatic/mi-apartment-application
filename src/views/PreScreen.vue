@@ -156,7 +156,7 @@
         </div>
         <div class="field col-12 md:col-4">
           <label for="landlord"
-            >Do You Have At Least 3 Good Landlord References?</label
+            >Do You Have At Least 2-3 Good Landlord References?</label
           >
           <SelectButton
             v-model="landlord"
@@ -216,7 +216,7 @@
         </div>
         <div class="field col-12 md:col-4">
           <label for="fee"
-            >Are You Willing to Pay the $40 Application Fee (charged after
+            >Are You Willing to Pay the $25 Application Fee (charged after
             seeing the property, before application)?</label
           >
           <SelectButton
