@@ -19,8 +19,7 @@
         @complete="complete($event)"
         :units="units"
       >
-        <keep-alive
-          >g
+        <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </router-view>
