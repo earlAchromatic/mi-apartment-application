@@ -24,7 +24,7 @@ const units = ref([
     longDescr:
       'Enjoy great views of Ionia and the charm of original exposed brick in this cozy 900 sq. foot, one bedroom and one bathroom apartment. Fully equipped with a washer and dryer and off-street parking. Stay cool in the summer and warm in the winter with the Forced Air AC & Furnace. Walking distance from shops and restaurants in historic downtown Ionia, Michigan.',
     image: '/src/assets/unitA-feature.jpg',
-    avail: true,
+    avail: false,
     rent: 850,
     sqft: 900,
     photoJSON: '/data/unitA_photos.json',
