@@ -104,11 +104,11 @@ export default {
     };
 
     const handleSubmit = () => {
+      console.log(formObject.value.licenseimg);
       try {
         fetch('/', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: encode({
+          body: formData({
             'form-name': 'Application',
             selectedUnit: formObject.value.selectedUnit.name,
             middlename: formObject.value.middlename,
