@@ -105,182 +105,47 @@ export default {
 
     const handleSubmit = () => {
       console.log(formObject.value.licenseimg);
+      let bodyData = new FormData();
+      bodyData.append('form-name', 'Application');
+      for (const [key, value] of Object.entries(formObject.value)) {
+        if (key === 'occupantList') {
+          console.log(typeof formObject.value.occupantList);
+          for (const [OLkey, OLvalue] of Object.entries(
+            formObject.value.occupantList
+          )) {
+            console.log(OLvalue);
+            console.log(OLvalue[`firstName_${Number(OLkey) + 1}`]);
+            bodyData.append(
+              `firstName_${Number(OLkey) + 1}`,
+              OLvalue[`firstName_${Number(OLkey) + 1}`]
+            );
+            bodyData.append(
+              `middleName_${Number(OLkey) + 1}`,
+              OLvalue[`middleName_${Number(OLkey) + 1}`]
+            );
+            bodyData.append(
+              `lastName_${Number(OLkey) + 1}`,
+              OLvalue[`lastName_${Number(OLkey) + 1}`]
+            );
+            bodyData.append(
+              `socialSecurity_${Number(OLkey) + 1}`,
+              OLvalue[`socialSecurity_${Number(OLkey) + 1}`]
+            );
+            bodyData.append(
+              `relationship_${Number(OLkey) + 1}`,
+              OLvalue[`relationship_${Number(OLkey) + 1}`]
+            );
+          }
+        } else {
+          bodyData.append(key, value);
+        }
+      }
+      console.log([...bodyData]);
+
       try {
         fetch('/', {
           method: 'POST',
-          body: new FormData({
-            'form-name': 'Application',
-            selectedUnit: formObject.value.selectedUnit.name,
-            middlename: formObject.value.middlename,
-            firstname: formObject.value.firstname,
-            lastname: formObject.value.lastname,
-            address: formObject.value.address,
-            city: formObject.value.city,
-            state: formObject.value.state,
-            zip: formObject.value.zip,
-            homephone: formObject.value.homephone,
-            workphone: formObject.value.workphone,
-            cellphone: formObject.value.cellphone,
-            email: formObject.value.email,
-            social: formObject.value.social,
-            bday: formObject.value.bday,
-            license: formObject.value.license,
-            licenseimg: formObject.value.licenseimg,
-            carmake: formObject.value.carmake,
-            carmodel: formObject.value.carmodel,
-            caryear: formObject.value.caryear,
-            currentEmployer: formObject.value.currentEmployer,
-            currentEmployerPhone: formObject.value.currentEmployerPhone,
-            currentEmployerAddress: formObject.value.currentEmployerAddress,
-            currentEmploymentLength: formObject.value.currentEmploymentLength,
-            currentPosition: formObject.value.currentPosition,
-            currentMonthlyIncome: formObject.value.currentMonthlyIncome,
-            currentSupervisor: formObject.value.currentSupervisor,
-            currentEmployerEmail: formObject.value.currentEmployerEmail,
-            previousEmployer: formObject.value.previousEmployer,
-            previousEmployerPhone: formObject.value.previousEmployerPhone,
-            previousEmployerAddress: formObject.value.previousEmployerAddress,
-            previousEmploymentLength: formObject.value.previousEmploymentLength,
-            previousPosition: formObject.value.previousPosition,
-            previousMonthlyIncome: formObject.value.previousMonthlyIncome,
-            previousSupervisor: formObject.value.previousSupervisor,
-            previousEmployerEmail: formObject.value.previousEmployerEmail,
-            otherIncome: formObject.value.otherIncome,
-            incomeSources: formObject.value.incomeSources,
-            incomeFromSources: formObject.value.incomeFromSources,
-            currentLandlord: formObject.value.currentLandlord,
-            currentYearsLived: formObject.value.currentYearsLived,
-            currentLandlordPhone: formObject.value.currentLandlordPhone,
-            currentLandlordEmail: formObject.value.currentLandlordEmail,
-            currentLandlordAddress: formObject.value.currentLandlordAddress,
-            currentLandlordCity: formObject.value.currentLandlordCity,
-            currentLandlordState: formObject.value.currentLandlordState,
-            currentReasonLeaving: formObject.value.currentReasonLeaving,
-            currentLeaseExp: formObject.value.currentLeaseExp,
-            secondLastLandlord: formObject.value.secondLastLandlord,
-            secondLastYearsLived: formObject.value.secondLastYearsLived,
-            secondLastLandlordPhone: formObject.value.secondLastLandlordPhone,
-            secondLastLandlordEmail: formObject.value.secondLastLandlordEmail,
-            secondLastLandlordAddress:
-              formObject.value.secondLastLandlordAddress,
-            secondLastLandlordCity: formObject.value.secondLastLandlordCity,
-            secondLastLandlordState: formObject.value.secondLastLandlordState,
-            secondLastLeaseExp: formObject.value.secondLastLeaseExp,
-            secondLastReasonLeaving: formObject.value.secondLastReasonLeaving,
-            thirdLastLandlord: formObject.value.thirdLastLandlord,
-            thirdLastYearsLived: formObject.value.thirdLastYearsLived,
-            thirdLastLandlordPhone: formObject.value.thirdLastLandlordPhone,
-            thirdLastLandlordEmail: formObject.value.thirdLastLandlordEmail,
-            thirdLastLandlordAddress: formObject.value.thirdLastLandlordAddress,
-            thirdLastLandlordCity: formObject.value.thirdLastLandlordCity,
-            thirdLastLandlordState: formObject.value.thirdLastLandlordState,
-            thirdLastLeaseExp: formObject.value.thirdLastLeaseExp,
-            thirdLastReasonLeaving: formObject.value.thirdLastReasonLeaving,
-            eviction: formObject.value.eviction,
-            explain: formObject.value.explain,
-            voucher: formObject.value.voucher,
-            occupantCount: formObject.value.occupantCount,
-            desiredMovein: formObject.value.desiredMovein,
-            cosigner: formObject.value.cosigner,
-            agency: formObject.value.agency,
-            agencyPhone: formObject.value.agencyPhone,
-            caseWorker: formObject.value.caseWorker,
-            creditors: formObject.value.creditors,
-            policeCalled: formObject.value.policeCalled,
-            sexOffender: formObject.value.sexOffender,
-            criminalOffense: formObject.value.criminalOffense,
-            explainCriminal: formObject.value.explainCriminal,
-            explainSummons: formObject.value.explainSummons,
-            summoned: formObject.value.summoned,
-            explainBankrupt: formObject.value.explainBankrupt,
-            bankrupt: formObject.value.bankrupt,
-            pets: formObject.value.pets,
-            relativeFirstName: formObject.value.relativeFirstName,
-            relativeLastName: formObject.value.relativeLastName,
-            relativeAddress: formObject.value.relativeAddress,
-            relativePhone: formObject.value.relativePhone,
-            relativeEmail: formObject.value.relativeEmail,
-            relativeState: formObject.value.relativeState,
-            relativeCity: formObject.value.relativeCity,
-            firstName_1: formObject.value.occupantList[0]
-              ? formObject.value.occupantList[0].firstName_1
-              : null,
-            middleName_1: formObject.value.occupantList[0]
-              ? formObject.value.occupantList[0].middleName_1
-              : null,
-            lastName_1: formObject.value.occupantList[0]
-              ? formObject.value.occupantList[0].lastName_1
-              : null,
-            socialSecurity_1: formObject.value.occupantList[0]
-              ? formObject.value.occupantList[0].socialSecurity_1
-              : null,
-            relationship_1: formObject.value.occupantList[0]
-              ? formObject.value.occupantList[0].relationship_1
-              : null,
-            firstName_2: formObject.value.occupantList[1]
-              ? formObject.value.occupantList[1].firstName_2
-              : null,
-            middleName_2: formObject.value.occupantList[1]
-              ? formObject.value.occupantList[1].middleName_2
-              : null,
-            lastName_2: formObject.value.occupantList[1]
-              ? formObject.value.occupantList[1].lastName_2
-              : null,
-            socialSecurity_2: formObject.value.occupantList[1]
-              ? formObject.value.occupantList[1].socialSecurity_2
-              : null,
-            relationship_2: formObject.value.occupantList[1]
-              ? formObject.value.occupantList[1].relationship_2
-              : null,
-            firstName_3: formObject.value.occupantList[2]
-              ? formObject.value.occupantList[2].firstName_3
-              : null,
-            middleName_3: formObject.value.occupantList[2]
-              ? formObject.value.occupantList[2].middleName_3
-              : null,
-            lastName_3: formObject.value.occupantList[2]
-              ? formObject.value.occupantList[2].lastName_3
-              : null,
-            socialSecurity_3: formObject.value.occupantList[2]
-              ? formObject.value.occupantList[2].socialSecurity_3
-              : null,
-            relationship_3: formObject.value.occupantList[2]
-              ? formObject.value.occupantList[2].relationship_3
-              : null,
-            firstName_4: formObject.value.occupantList[3]
-              ? formObject.value.occupantList[3].firstName_4
-              : null,
-            middleName_4: formObject.value.occupantList[3]
-              ? formObject.value.occupantList[3].middleName_4
-              : null,
-            lastName_4: formObject.value.occupantList[3]
-              ? formObject.value.occupantList[3].lastName_4
-              : null,
-            socialSecurity_4: formObject.value.occupantList[3]
-              ? formObject.value.occupantList[3].socialSecurity_4
-              : null,
-            relationship_4: formObject.value.occupantList[3]
-              ? formObject.value.occupantList[3].relationship_4
-              : null,
-            firstName_5: formObject.value.occupantList[4]
-              ? formObject.value.occupantList[4].firstName_5
-              : null,
-            middleName_5: formObject.value.occupantList[4]
-              ? formObject.value.occupantList[4].middleName_5
-              : null,
-            lastName_5: formObject.value.occupantList[4]
-              ? formObject.value.occupantList[4].lastName_5
-              : null,
-            socialSecurity_5: formObject.value.occupantList[4]
-              ? formObject.value.occupantList[4].socialSecurity_5
-              : null,
-            relationship_5: formObject.value.occupantList[4]
-              ? formObject.value.occupantList[4].relationship_5
-              : null,
-            datestamp: formObject.value.datestamp,
-            consent: formObject.value.consent,
-            signature: formObject.value.signature,
-          }),
+          body: bodyData,
         })
           .then((req) => console.log(req.body))
           .then(() => {
