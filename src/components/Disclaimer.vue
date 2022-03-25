@@ -43,7 +43,7 @@
       there are no barriers to obtain housing because of race, color, religion,
       sex, national origin, handicap, or familiar status.
     </p>
-    <p>The application fee is $40 and is non-refundable.</p>
+    <p>The application fee is $25 and is non-refundable.</p>
     <p>
       Your signature also represents your authorization for transmission of
       electronic communications. Additionally, you agree to provide us a current
