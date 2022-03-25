@@ -32,7 +32,13 @@
       <input type="text" name="bg" />
       <input type="text" name="fee" />
     </form>
-    <form name="Application" netlify netlify-honeypot="bot-field" hidden>
+    <form
+      name="Application"
+      enctype="multipart/form-data"
+      netlify
+      netlify-honeypot="bot-field"
+      hidden
+    >
       <input type="hidden" name="form-name" value="Application" />
       <input type="text" name="selectedUnit" />
       <input type="text" name="firstname" />
@@ -49,6 +55,7 @@
       <input type="text" name="social" />
       <input type="text" name="bday" />
       <input type="text" name="license" />
+      <input type="file" name="licenseimg" />
       <input type="text" name="carmake" />
       <input type="text" name="carmodel" />
       <input type="text" name="caryear" />
