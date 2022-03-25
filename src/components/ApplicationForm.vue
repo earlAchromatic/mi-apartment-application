@@ -108,7 +108,7 @@ export default {
       try {
         fetch('/', {
           method: 'POST',
-          body: FormData({
+          body: new FormData({
             'form-name': 'Application',
             selectedUnit: formObject.value.selectedUnit.name,
             middlename: formObject.value.middlename,
