@@ -243,6 +243,20 @@
                 >Driver's License Number is required.</small
               >
             </div>
+            <div class="field col-12">
+              <FileUpload
+                name="licenseimg"
+                url="./upload"
+                :maxFileSize="8000000"
+                :fileLimit="1"
+                accept="image/*"
+              >
+                <template #empty>
+                  <p>Drag and drop files to here to upload driver's license.</p>
+                  <small>*Max file size 8MB</small>
+                </template>
+              </FileUpload>
+            </div>
           </div>
 
           <h3>Vehicle Information</h3>
@@ -318,6 +332,8 @@ import InputText from 'primevue/inputtext';
 import InputMask from 'primevue/inputmask';
 import Disclaimer from '../../components/Disclaimer.vue';
 import Divider from 'primevue/divider';
+import FileUpload from 'primevue/fileupload';
+
 import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({
@@ -360,7 +376,16 @@ export default defineComponent({
       validationErrors: {},
     };
   },
-  components: { Button, Card, InputNumber, InputText, Disclaimer, Divider },
+  components: {
+    Button,
+    Card,
+    InputNumber,
+    InputText,
+    Disclaimer,
+    Divider,
+    FileUpload,
+    InputMask,
+  },
   methods: {
     nextPage() {
       this.submitted = true;
