@@ -10,7 +10,7 @@
             <Dropdown
               id="unit"
               name="unit"
-              v-model="this.selectedUnit"
+              v-model="selectedUnit"
               :options="units"
               optionLabel="name"
               placeholder="Select a Unit"
@@ -343,46 +343,40 @@ import FileUpload from '../../components/FileUpload.vue';
 
 import { defineComponent, ref, onMounted } from 'vue';
 
+import formData from '../../../formData';
+
 export default defineComponent({
-  setup() {
-    const root = ref(null);
-
-    onMounted(() => {
-      // the DOM element will be assigned to the ref after initial render
-      console.log(root.value); // this is your $el
-    });
-
-    return {
-      root,
-    };
-  },
   props: ['units'],
   data() {
-    return {
-      units: this.units,
-      selectedUnit: null,
-      middlename: '',
-      firstname: '',
-      lastname: '',
-      unit: '',
-      address: '',
-      city: '',
-      state: '',
-      zip: null,
-      homephone: null,
-      workphone: null,
-      cellphone: null,
-      email: '',
-      social: '',
-      bday: '',
-      license: '',
-      licenseimg: null,
-      carmake: '',
-      carmodel: '',
-      caryear: '',
-      submitted: false,
-      validationErrors: {},
-    };
+    if (import.meta.env.DEV) {
+      return formData;
+    } else {
+      return {
+        units: this.units,
+        selectedUnit: null,
+        middlename: '',
+        firstname: '',
+        lastname: '',
+        unit: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: null,
+        homephone: null,
+        workphone: null,
+        cellphone: null,
+        email: '',
+        social: '',
+        bday: '',
+        license: '',
+        licenseimg: null,
+        carmake: '',
+        carmodel: '',
+        caryear: '',
+        submitted: false,
+        validationErrors: {},
+      };
+    }
   },
   components: {
     Button,
@@ -396,8 +390,7 @@ export default defineComponent({
   },
   methods: {
     licenseUploader(event) {
-      this.licenseimg = event.files;
-      console.log(this.licenseimg);
+      this.licenseimg = event.files[0];
     },
     nextPage() {
       this.submitted = true;
@@ -438,7 +431,6 @@ export default defineComponent({
 
       function validate(nameArray) {
         nameArray.forEach((name) => {
-          console.log(name);
           if (!this[name]) {
             this.validationErrors[name] = true;
             scrollToTop();

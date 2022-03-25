@@ -526,44 +526,49 @@ import Checkbox from 'primevue/checkbox';
 import InputText from 'primevue/inputtext';
 import InputMask from 'primevue/inputmask';
 import Disclaimer from '../../components/Disclaimer.vue';
+import formData from '../../../formData';
 export default {
   components: { Card, Button, Checkbox, InputMask, InputText, Disclaimer },
   data() {
-    return {
-      previousRentalThreshold: 3,
-      units: this.units,
-      currentLandlord: '',
-      currentYearsLived: null,
-      currentLandlordPhone: '',
-      currentLandlordEmail: '',
-      currentLandlordAddress: '',
-      currentLandlordCity: '',
-      currentLandlordState: '',
-      currentReasonLeaving: '',
-      currentLeaseExp: '',
-      secondLastLandlord: '',
-      secondLastYearsLived: null,
-      secondLastLandlordPhone: '',
-      secondLastLandlordEmail: '',
-      secondLastLandlordAddress: '',
-      secondLastLandlordCity: '',
-      secondLastLandlordState: '',
-      secondLastLeaseExp: '',
-      secondLastReasonLeaving: '',
-      thirdLastLandlord: '',
-      thirdLastYearsLived: null,
-      thirdLastLandlordPhone: '',
-      thirdLastLandlordEmail: '',
-      thirdLastLandlordAddress: '',
-      thirdLastLandlordCity: '',
-      thirdLastLandlordState: '',
-      thirdLastLeaseExp: '',
-      thirdLastReasonLeaving: '',
-      eviction: null,
-      explain: '',
-      submitted: false,
-      validationErrors: {},
-    };
+    if (import.meta.env.DEV) {
+      return formData;
+    } else {
+      return {
+        previousRentalThreshold: 3,
+        units: this.units,
+        currentLandlord: '',
+        currentYearsLived: null,
+        currentLandlordPhone: '',
+        currentLandlordEmail: '',
+        currentLandlordAddress: '',
+        currentLandlordCity: '',
+        currentLandlordState: '',
+        currentReasonLeaving: '',
+        currentLeaseExp: '',
+        secondLastLandlord: '',
+        secondLastYearsLived: null,
+        secondLastLandlordPhone: '',
+        secondLastLandlordEmail: '',
+        secondLastLandlordAddress: '',
+        secondLastLandlordCity: '',
+        secondLastLandlordState: '',
+        secondLastLeaseExp: '',
+        secondLastReasonLeaving: '',
+        thirdLastLandlord: '',
+        thirdLastYearsLived: null,
+        thirdLastLandlordPhone: '',
+        thirdLastLandlordEmail: '',
+        thirdLastLandlordAddress: '',
+        thirdLastLandlordCity: '',
+        thirdLastLandlordState: '',
+        thirdLastLeaseExp: '',
+        thirdLastReasonLeaving: '',
+        eviction: null,
+        explain: '',
+        submitted: false,
+        validationErrors: {},
+      };
+    }
   },
   methods: {
     validateForm() {
@@ -576,7 +581,6 @@ export default {
 
       function validate(nameArray) {
         nameArray.forEach((name) => {
-          console.log(name);
           if (!this[name]) {
             this.validationErrors[name] = true;
             scrollToTop();

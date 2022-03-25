@@ -7,7 +7,7 @@
           <div class="field col-2">
             <label for="selectedUnit">Selected Unit</label>
             <b name="selectedUnit"
-              >{{ formData.selectedUnit ? formData.selectedUnit.name : '-' }}
+              >{{ formData.selectedUnit ? formData.selectedUnit : '-' }}
             </b>
           </div>
           <div class="field md:col-2 col-6">
@@ -426,16 +426,21 @@ import Disclaimer from '../../components/Disclaimer.vue';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import InputMask from 'primevue/inputmask';
+import formData from '../../../formData';
 
 export default {
   data() {
-    return {
-      datestamp: new Date().toLocaleDateString('en-US'),
-      consent: '',
-      signature: '',
-      submitted: false,
-      validationErrors: {},
-    };
+    if (import.meta.env.DEV) {
+      return formData;
+    } else {
+      return {
+        datestamp: new Date().toLocaleDateString('en-US'),
+        consent: '',
+        signature: '',
+        submitted: false,
+        validationErrors: {},
+      };
+    }
   },
   components: { InputText, InputMask, Checkbox, Card, Disclaimer },
   props: {
@@ -459,7 +464,6 @@ export default {
     validateForm() {
       function validate(nameArray) {
         nameArray.forEach((name) => {
-          console.log(name);
           if (!this[name]) {
             this.validationErrors[name] = true;
           } else delete this.validationErrors[name];
