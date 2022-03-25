@@ -16,11 +16,21 @@ const routes = [
     path: '/about',
     component: () => import('../views/About.vue'),
   },
+  {
+    name: 'maintenance',
+    path: '/maintenance',
+    component: () => import('../views/Maintenance.vue'),
+  },
   { name: 'faq', path: '/FAQ', component: () => import('../views/FAQ.vue') },
   {
     name: 'screen',
     path: '/screen',
     component: () => import('../views/PreScreen.vue'),
+  },
+  {
+    path: '/maintenance-request-submitted',
+    name: 'maintenance-request-submitted',
+    component: () => import('../components/MaintenanceSubmissionSuccess.vue'),
   },
   {
     path: '/:catchAll(.*)/thanks',

@@ -16,6 +16,11 @@
         <li>
           <router-link to="/FAQ"> FAQ </router-link>
         </li>
+        <li>
+          <router-link class="maintenance" to="/Maintenance"
+            >Maintenance Request</router-link
+          >
+        </li>
       </ul>
     </nav>
   </header>
@@ -45,4 +50,6 @@ li
 ul
     display: flex
     justify-content: center
+.maintenance
+  color: gray
 </style>
