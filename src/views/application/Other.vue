@@ -541,6 +541,7 @@ import InputText from 'primevue/inputtext';
 import InputMask from 'primevue/inputmask';
 import Textarea from 'primevue/textarea';
 import Disclaimer from '../../components/Disclaimer.vue';
+import formData from '../../../formData';
 export default {
   components: {
     Card,
@@ -552,44 +553,48 @@ export default {
     Textarea,
   },
   data() {
-    return {
-      occupantList: [
-        {
-          firstName_1: '',
-          middleName_1: '',
-          lastName_1: '',
-          socialSecurity_1: '',
-          relationship_1: '',
-        },
-      ],
-      units: this.units,
-      voucher: null,
-      occupantCount: null,
-      desiredMovein: '',
-      cosigner: '',
-      agency: '',
-      agencyPhone: '',
-      caseWorker: '',
-      creditors: '',
-      policeCalled: '',
-      sexOffender: null,
-      criminalOffense: null,
-      explainCriminal: '',
-      explainSummons: '',
-      summoned: null,
-      explainBankrupt: '',
-      bankrupt: null,
-      pets: null,
-      relativeFirstName: '',
-      relativeLastName: '',
-      relativeAddress: '',
-      relativePhone: '',
-      relativeEmail: '',
-      relativeState: '',
-      relativeCity: '',
-      submitted: false,
-      validationErrors: {},
-    };
+    if (import.meta.env.DEV) {
+      return formData;
+    } else {
+      return {
+        occupantList: [
+          {
+            firstName_1: '',
+            middleName_1: '',
+            lastName_1: '',
+            socialSecurity_1: '',
+            relationship_1: '',
+          },
+        ],
+        units: this.units,
+        voucher: null,
+        occupantCount: null,
+        desiredMovein: '',
+        cosigner: '',
+        agency: '',
+        agencyPhone: '',
+        caseWorker: '',
+        creditors: '',
+        policeCalled: null,
+        sexOffender: null,
+        criminalOffense: null,
+        explainCriminal: '',
+        explainSummons: '',
+        summoned: null,
+        explainBankrupt: '',
+        bankrupt: null,
+        pets: null,
+        relativeFirstName: '',
+        relativeLastName: '',
+        relativeAddress: '',
+        relativePhone: '',
+        relativeEmail: '',
+        relativeState: '',
+        relativeCity: '',
+        submitted: false,
+        validationErrors: {},
+      };
+    }
   },
   computed: {
     canSubtract() {
@@ -606,7 +611,6 @@ export default {
   methods: {
     addOccupant() {
       let i = this.occupantList.length + 1;
-      console.log(i);
       this.occupantList.push({
         ['firstName_' + i]: '',
         ['middleName_' + i]: '',

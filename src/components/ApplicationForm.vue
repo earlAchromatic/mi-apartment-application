@@ -76,7 +76,6 @@ export default {
 
     const nextPage = (event) => {
       for (let field in event.formData) {
-        console.log(field);
         formObject.value[field] = event.formData[field];
       }
       router.push(items.value[event.pageIndex + 1].to);
@@ -104,17 +103,13 @@ export default {
     };
 
     const handleSubmit = () => {
-      console.log(formObject.value.licenseimg);
       let bodyData = new FormData();
       bodyData.append('form-name', 'Application');
       for (const [key, value] of Object.entries(formObject.value)) {
         if (key === 'occupantList') {
-          console.log(typeof formObject.value.occupantList);
           for (const [OLkey, OLvalue] of Object.entries(
             formObject.value.occupantList
           )) {
-            console.log(OLvalue);
-            console.log(OLvalue[`firstName_${Number(OLkey) + 1}`]);
             bodyData.append(
               `firstName_${Number(OLkey) + 1}`,
               OLvalue[`firstName_${Number(OLkey) + 1}`]

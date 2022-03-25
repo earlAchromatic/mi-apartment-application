@@ -354,30 +354,36 @@ import Button from 'primevue/button';
 import Disclaimer from '../../components/Disclaimer.vue';
 import Divider from 'primevue/divider';
 import InputMask from 'primevue/inputmask';
+
+import formData from '../../../formData';
 export default {
   data() {
-    return {
-      units: this.units,
-      currentEmployer: '',
-      currentEmployerPhone: '',
-      currentEmployerAddress: '',
-      currentEmploymentLength: 1,
-      currentPosition: '',
-      currentMonthlyIncome: '',
-      currentSupervisor: '',
-      currentEmployerEmail: '',
-      previousEmployer: '',
-      previousEmployerPhone: '',
-      previousEmployerAddress: '',
-      previousEmploymentLength: 0,
-      previousPosition: '',
-      previousMonthlyIncome: '',
-      previousSupervisor: '',
-      previousEmployerEmail: '',
-      otherIncome: null,
-      submitted: false,
-      validationErrors: {},
-    };
+    if (import.meta.env.DEV) {
+      return formData;
+    } else {
+      return {
+        units: this.units,
+        currentEmployer: '',
+        currentEmployerPhone: '',
+        currentEmployerAddress: '',
+        currentEmploymentLength: 1,
+        currentPosition: '',
+        currentMonthlyIncome: '',
+        currentSupervisor: '',
+        currentEmployerEmail: '',
+        previousEmployer: '',
+        previousEmployerPhone: '',
+        previousEmployerAddress: '',
+        previousEmploymentLength: 0,
+        previousPosition: '',
+        previousMonthlyIncome: '',
+        previousSupervisor: '',
+        previousEmployerEmail: '',
+        otherIncome: null,
+        submitted: false,
+        validationErrors: {},
+      };
+    }
   },
   components: { Card, Dropdown, Button, Disclaimer, Divider, InputMask },
   methods: {
@@ -391,7 +397,6 @@ export default {
 
       function validate(nameArray) {
         nameArray.forEach((name) => {
-          console.log(name);
           if (!this[name]) {
             this.validationErrors[name] = true;
             scrollToTop();
