@@ -243,19 +243,26 @@
                 >Driver's License Number is required.</small
               >
             </div>
-            <div class="field col-12">
+            <div class="upload field col-12">
               <FileUpload
                 name="licenseimg"
-                url="./upload"
+                :auto="true"
                 :maxFileSize="8000000"
-                :fileLimit="1"
                 accept="image/*"
+                :customUpload="true"
+                @uploader="licenseUploader"
+                @remove="licenseimg = null"
               >
                 <template #empty>
                   <p>Drag and drop files to here to upload driver's license.</p>
                   <small>*Max file size 8MB</small>
                 </template>
               </FileUpload>
+              <small
+                v-show="validationErrors.licenseimg && submitted"
+                class="p-error"
+                >Driver's License Image is required.</small
+              >
             </div>
           </div>
 
@@ -332,7 +339,7 @@ import InputText from 'primevue/inputtext';
 import InputMask from 'primevue/inputmask';
 import Disclaimer from '../../components/Disclaimer.vue';
 import Divider from 'primevue/divider';
-import FileUpload from 'primevue/fileupload';
+import FileUpload from '../../components/FileUpload.vue';
 
 import { defineComponent, ref, onMounted } from 'vue';
 
@@ -369,6 +376,7 @@ export default defineComponent({
       social: '',
       bday: '',
       license: '',
+      licenseimg: null,
       carmake: '',
       carmodel: '',
       caryear: '',
@@ -387,6 +395,10 @@ export default defineComponent({
     InputMask,
   },
   methods: {
+    licenseUploader(event) {
+      this.licenseimg = event.files;
+      console.log(this.licenseimg);
+    },
     nextPage() {
       this.submitted = true;
       if (this.validateForm()) {
@@ -407,6 +419,7 @@ export default defineComponent({
             social: this.social,
             bday: this.bday,
             license: this.license,
+            licenseimg: this.licenseimg,
             carmake: this.carmake,
             carmodel: this.carmodel,
             caryear: this.caryear,
@@ -451,6 +464,7 @@ export default defineComponent({
         'carmodel',
         'caryear',
         'license',
+        'licenseimg',
         'homephone',
         'cellphone',
         'workphone',
@@ -476,4 +490,10 @@ export default defineComponent({
 <style lang="sass" scoped>
 h3, h4
   width: 100%
+
+.upload
+  flex-direction: column
+
+  .p-component
+    width: 100%
 </style>

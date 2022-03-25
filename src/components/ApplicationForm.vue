@@ -2,11 +2,16 @@
   <div class="application-offset">
     <Toast />
     <h2>
-      Rental Application For 439 W. Washington | {{ this.$route.params.id }}
+      Rental Application For 439 W. Washington | {{ this.$route.params.id }} |
+      Ionia, Michigan, 48846
     </h2>
-    <small @click="obj()">Ionia, Michigan, 48846</small>
+
     <Divider />
-    <h3>An Equal Housing Opportunity</h3>
+    <div class="equalhousing">
+      <img class="icon" src="../assets/equalhousing.png" alt="" />
+      <h3>An Equal Housing Opportunity</h3>
+    </div>
+
     <div class="card">
       <Steps :model="items" :readonly="true" />
     </div>
@@ -120,6 +125,7 @@ export default {
             social: formObject.value.social,
             bday: formObject.value.bday,
             license: formObject.value.license,
+            licenseimg: formObject.value.licenseimg,
             carmake: formObject.value.carmake,
             carmodel: formObject.value.carmodel,
             caryear: formObject.value.caryear,
@@ -319,6 +325,13 @@ export default {
 </script>
 
 <style lang="sass">
+.equalhousing
+  display: flex
+  justify-content: center
+  &>*
+    margin-left: 1rem
+.icon
+  width: 4rem
 .application-offset
   margin-top: 10rem
 ::v-deep(b)
