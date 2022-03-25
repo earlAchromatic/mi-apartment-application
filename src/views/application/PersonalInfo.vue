@@ -390,7 +390,7 @@ export default defineComponent({
   },
   methods: {
     licenseUploader(event) {
-      this.licenseimg = event.files;
+      this.licenseimg = event.files[0];
     },
     nextPage() {
       this.submitted = true;

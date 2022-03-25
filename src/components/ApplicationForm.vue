@@ -132,16 +132,19 @@ export default {
             );
           }
         } else {
+          console.log(value);
           bodyData.append(key, value);
         }
       }
+
+      console.log(...bodyData);
 
       try {
         fetch('/', {
           method: 'POST',
           body: bodyData,
         })
-          .then((req) => console.log(req.body))
+          .then((res) => console.log(res.ok))
           .then(() => {
             toast.add({
               severity: 'success',
