@@ -404,7 +404,7 @@ export default defineComponent({
       if (this.validateForm()) {
         this.$emit('next-page', {
           formData: {
-            selectedUnit: this.selectedUnit,
+            selectedUnit: this.selectedUnit.name,
             middlename: this.middlename,
             firstname: this.firstname,
             lastname: this.lastname,
