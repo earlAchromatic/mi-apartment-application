@@ -135,7 +135,6 @@ export default {
           bodyData.append(key, value);
         }
       }
-      console.log([...bodyData]);
 
       try {
         fetch('/', {
