@@ -42,6 +42,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import Disclaimer from './Disclaimer.vue';
 
+const sendpdfURL = '/.netlify/functions/send-pdf-background';
+
 export default {
   setup() {
     const router = useRouter();
@@ -132,7 +134,6 @@ export default {
             );
           }
         } else {
-          console.log(value);
           bodyData.append(key, value);
         }
       }
@@ -144,7 +145,20 @@ export default {
           method: 'POST',
           body: bodyData,
         })
-          .then((res) => console.log(res.ok))
+          .then((res) => {
+            console.log('Initial POST to Netlify:');
+            console.log(res.ok);
+          })
+          .then(() => {
+            fetch(sendpdfURL, {
+              method: 'POST',
+              body: bodyData,
+            });
+          })
+          .then((res) => {
+            console.log('POST to Netlify Function:');
+            console.log(res.ok);
+          })
           .then(() => {
             toast.add({
               severity: 'success',
