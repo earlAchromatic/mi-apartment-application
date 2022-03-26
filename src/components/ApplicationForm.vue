@@ -172,9 +172,8 @@ export default {
             });
             router.push('thanks');
           })
-          .catch(() => {
-            console.log('ERROR FILLING OUT FORM');
-            router.push('404');
+          .catch((err) => {
+            console.log(err);
           });
       } catch (err) {
         if (errCount >= 1) {
