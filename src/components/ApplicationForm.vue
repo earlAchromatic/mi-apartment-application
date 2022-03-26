@@ -42,7 +42,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import Disclaimer from './Disclaimer.vue';
 
-const sendpdfURL = '/.netlify/functions/send-pdf-background';
+const sendpdfURL = '/.netlify/functions/send-pdf';
 
 export default {
   setup() {
@@ -156,13 +156,12 @@ export default {
             });
           })
           .then((res) => {
-            console.log('POST to Netlify Function:');
-            console.log(res.ok);
+            console.log('POST to Netlify Function');
           })
           .then(() => {
             toast.add({
               severity: 'success',
-              summary: 'Order submitted',
+              summary: 'Application submitted',
               detail:
                 'Dear, ' +
                 formObject.value.firstname +
@@ -181,7 +180,7 @@ export default {
         } else {
           toast.add({
             severity: 'error',
-            summary: 'Your application has NOT been submitted.',
+            summary: 'Your Application has NOT been submitted.',
             detail:
               'Something out of ordinary happened... Please make sure that each of the form sections are completely filled out and try again.',
           });
