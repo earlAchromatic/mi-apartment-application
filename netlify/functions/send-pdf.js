@@ -13,10 +13,11 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async function (event) {
+  console.log('starting function...');
   const fields = await parseMultipartForm(event);
   console.log(fields);
 
-  console.log(`Sending PDF report to ${destination}`);
+  console.log(`Sending PDF report`);
 
   const report = Buffer.from(
     new jsPDF().text(fields, 10, 10).output('arraybuffer')
@@ -39,6 +40,7 @@ exports.handler = async function (event) {
 };
 
 function parseMultipartForm(event) {
+  console.log('starting parse...');
   return new Promise((resolve) => {
     // we'll store all form fields inside of this
     const fields = {};
@@ -77,7 +79,7 @@ function parseMultipartForm(event) {
     busboy.on('finish', () => {
       resolve(fields);
     });
-
+    console.log('deep in the parse...');
     // now that all handlers are set up, we can finally start processing our request!
     busboy.write(event.body);
   });
