@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf';
 import nodemailer from 'nodemailer';
-import * as Busboy from 'busboy';
+import Busboy from 'busboy';
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -13,8 +13,6 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async function (event) {
-  //const { bodyData } = JSON.parse(event.body);
-
   const fields = await parseMultipartForm(event);
   console.log(fields);
 
