@@ -22,7 +22,7 @@ exports.handler = async function (event) {
   console.log(event.body.bodyData);
   console.log('----------------\n');
   //const { bodyData } = JSON.parse(event.body);
-  form.parse(req, (err, fields, files) => {
+  form.parse(event, (err, fields, files) => {
     if (err) {
       console.error(err);
     }
