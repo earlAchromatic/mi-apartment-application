@@ -47,15 +47,15 @@ function parseMultipartForm(event) {
       headers: event.headers,
     });
 
-    busboy.on('file', (fieldname, filestream, filename, _, mimeType) => {
-      filestream.on('data', (data) => {
-        fields[fieldname] = {
-          content: data,
-          filename,
-          type: mimeType,
-        };
-      });
-    });
+    // busboy.on('file', (fieldname, filestream, filename, _, mimeType) => {
+    //   filestream.on('data', (data) => {
+    //     fields[fieldname] = {
+    //       content: data,
+    //       filename,
+    //       type: mimeType,
+    //     };
+    //   });
+    // });
 
     busboy.on('field', (fieldName, value) => {
       fields[fieldName] = value;
