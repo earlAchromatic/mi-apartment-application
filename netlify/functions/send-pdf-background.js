@@ -1,5 +1,7 @@
 const { jsPDF } = require('jspdf');
 const nodemailer = require('nodemailer');
+import formidable from 'formidable';
+const form = formidable();
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -12,7 +14,21 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async function (event) {
-  const { bodyData } = JSON.parse(event.body);
+  console.log('------*---------\n');
+  console.log(event);
+  console.log('----------------\n');
+  console.log(event.body);
+  console.log('----------------\n');
+  console.log(event.body.bodyData);
+  console.log('----------------\n');
+  //const { bodyData } = JSON.parse(event.body);
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      console.error(err);
+    }
+    console.log('fields:', fields);
+    console.log('files:', files);
+  });
   console.log(`Sending PDF report to ${destination}`);
 
   const report = Buffer.from(
