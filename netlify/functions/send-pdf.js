@@ -1,4 +1,4 @@
-const { jsPDF } = require('jspdf');
+import { jsPDF } from 'jspdf';
 const nodemailer = require('nodemailer');
 import formidable from 'formidable';
 const form = formidable();
