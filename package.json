@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"tsc --noEmit --watch\"",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tx": "swc ./functions-src/send-pdf.js -o ./netlify/functions/send-pdf.js --watch"
   },
   "dependencies": {
     "busboy": "^1.5.0",
@@ -21,7 +22,10 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.56",
+    "@swc/core": "^1.2.160",
     "@vitejs/plugin-vue": "^2.0.0",
+    "chokidar": "^3.5.3",
     "concurrently": "^7.0.0",
     "sass": "^1.49.0",
     "typescript": "^4.4.4",

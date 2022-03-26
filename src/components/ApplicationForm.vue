@@ -42,7 +42,12 @@ import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import Disclaimer from './Disclaimer.vue';
 
-const sendpdfURL = '/.netlify/functions/send-pdf';
+let sendpdfURL;
+if (import.meta.env.DEV) {
+  sendpdfURL = 'http://localhost:7000/.netlify/functions/send-pdf';
+} else {
+  sendpdfURL = '/.netlify/functions/send-pdf';
+}
 
 export default {
   setup() {
@@ -156,7 +161,7 @@ export default {
             });
           })
           .then((res) => {
-            console.log('POST to Netlify Function');
+            console.log(`POST to Netlify Function at: ${sendpdfURL}`);
           })
           .then(() => {
             toast.add({
