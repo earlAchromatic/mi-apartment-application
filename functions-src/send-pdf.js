@@ -17,7 +17,7 @@ exports.handler = async function (event) {
 
   const info = await transporter.sendMail({
     from: 'info@ionia.apartments',
-    to: 'info@ionia.apartments',
+    to: ['info@ionia.apartments', 'scout.tosi@gmail.com'],
     subject: `Application for ${fields.firstname} ${fields.lastname} | ${fields.selectedUnit} | ${fields.datestamp}`,
     text: 'See attached report PDF',
     attachments: [

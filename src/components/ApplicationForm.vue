@@ -177,7 +177,7 @@ export default {
                 formObject.value.lastname +
                 ' your application has been submitted.',
             });
-            router.push('thanks');
+            router.push('application-submitted');
           })
           .catch((err) => {
             console.log(err);
