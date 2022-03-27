@@ -34,6 +34,7 @@ exports.handler = async function (event) {
   console.log(`PDF report sent: ${info.messageId}`);
   return {
     statusCode: 200,
+    headers: { 'Access-Control-Allow-Origin': '*' },
     body: `PDF report sent: ${info.messageId}`,
   };
 };

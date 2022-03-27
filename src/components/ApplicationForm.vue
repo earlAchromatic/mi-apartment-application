@@ -159,7 +159,9 @@ export default {
             fetch(sendpdfURL, {
               method: 'POST',
               body: bodyData,
-            }).then((res) => console.log(res));
+            })
+              .then((res) => console.log(res))
+              .catch((err) => console.error(err));
           })
           .then((res) => {
             console.log(`POST to Netlify Function at: ${sendpdfURL}`);
