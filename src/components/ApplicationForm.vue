@@ -7,12 +7,12 @@
     </h2>
 
     <Divider />
-    <div class="equalhousing">
+    <div class="equalhousing opaque">
       <img class="icon" src="../assets/equalhousing.png" alt="" />
       <h3>An Equal Housing Opportunity</h3>
     </div>
 
-    <div class="card">
+    <div class="card opaque">
       <Steps :model="items" :readonly="true" />
     </div>
     <form method="post" @submit.prevent="">
@@ -98,6 +98,7 @@ export default {
       formObject.value.consent = consent;
       formObject.value.datestamp = datestamp;
       formObject.value.signature = sig;
+      formObject.value.writtenSig = evt.writtenSig;
       formObject.value.pdfRender = evt.pdfRender;
       handleSubmit();
     };
@@ -229,4 +230,8 @@ export default {
   padding: 0.5rem
 .p-steps ul
   flex-wrap: wrap
+.p-card
+
+  background-color: rgba(255,255,255,0.94)
+  backdrop-filter: blur(2px)
 </style>

@@ -15,10 +15,13 @@
   </div>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
+
 .success
   margin-top: 9rem
   padding:1rem
+  background: white
+  height: 100vh
   img
     max-width: 35rem
     padding: 1rem

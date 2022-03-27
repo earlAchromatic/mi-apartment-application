@@ -1,5 +1,5 @@
 <template>
-  <div class="offset">
+  <div class="offset opaque">
     <Card class="instructions">
       <template #title> Maintenance Request Form</template>
       <template #subtitle> Sorry to hear you are having a problem. </template>
@@ -23,4 +23,5 @@ const props = defineProps(['units']);
 .offset
   margin-top: 10rem
   padding: 1rem
+  height: 80vh
 </style>

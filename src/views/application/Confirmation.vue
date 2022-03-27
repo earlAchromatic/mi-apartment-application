@@ -391,8 +391,28 @@
               >Your Acknowledgement is required.</small
             >
           </div>
+          <div>
+            <label for="sigPad">Sign Here:</label>
+            <VueSignaturePad
+              id="sigPad"
+              width="500px"
+              height="200px"
+              ref="signaturePad"
+              :options="{ onEnd }"
+            />
+            <Button
+              @click="clearSignature"
+              label="Clear Signature"
+              icon="pi pi-times"
+            ></Button>
+            <small
+              v-show="validationErrors.writtenSig && submitted"
+              class="p-error"
+              >Must Sign Your Full Name Here.</small
+            >
+          </div>
           <div class="field col-12">
-            <label for="signature">Signature (full name)</label>
+            <label for="signature">Print Full Name</label>
             <InputText
               v-model="signature"
               id="signature"
@@ -423,12 +443,14 @@
 
 <script>
 import Card from 'primevue/card';
+import Button from 'primevue/button';
 import Disclaimer from '../../components/Disclaimer.vue';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import InputMask from 'primevue/inputmask';
 import formData from '../../../formData';
 import html2pdf from 'html2pdf.js';
+import { VueSignaturePad } from 'vue-signature-pad';
 
 export default {
   data() {
@@ -440,12 +462,20 @@ export default {
         consent: '',
         signature: '',
         pdfRender: null,
+        writtenSig: null,
         submitted: false,
         validationErrors: {},
       };
     }
   },
-  components: { InputText, InputMask, Checkbox, Card, Disclaimer },
+  components: {
+    InputText,
+    InputMask,
+    Checkbox,
+    Card,
+    Disclaimer,
+    VueSignaturePad,
+  },
   props: {
     formData: Object,
   },
@@ -460,6 +490,7 @@ export default {
           consent: this.consent,
           signature: this.signature,
           pdfRender: this.pdfRender,
+          writtenSig: this.writtenSig,
         });
       }
       this.submitted = true;
@@ -475,36 +506,58 @@ export default {
       }
 
       let validateContext = validate.bind(this);
-      validateContext(['consent', 'signature']);
+      validateContext(['consent', 'signature', 'writtenSig']);
 
       return !Object.keys(this.validationErrors).length;
     },
-  },
-  mounted() {
-    let el = this.$refs.pdfPlatform;
+    clearSignature() {
+      let sigPad = this.$refs.signaturePad;
+      sigPad.clearSignature();
+      this.writtenSig = null;
+    },
+    onEnd() {
+      const { data } = this.$refs.signaturePad.saveSignature();
+      let blob = this.b64toBlob(data);
+      console.log(blob);
+      this.renderPdf();
+      this.writtenSig = blob;
+    },
+    b64toBlob(dataURI) {
+      var byteString = atob(dataURI.split(',')[1]);
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
 
-    let opt = {
-      margin: 0.15,
-      filename: 'myfile.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      pagebreak: { mode: 'avoid-all' },
-      jsPDF: {
-        unit: 'in',
-        format: 'letter',
-        orientation: 'portrait',
-      },
-    };
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      return new Blob([ab], { type: 'image/png' });
+    },
+    renderPdf() {
+      let el = this.$refs.pdfPlatform;
 
-    html2pdf()
-      .set(opt)
-      .from(el)
-      .outputPdf('blob')
-      .then((res) => {
-        this.pdfRender = res;
-        console.log(typeof res);
-        console.log(this.pdfRender);
-      })
-      .catch((err) => console.error(err));
+      let opt = {
+        margin: 0.15,
+        filename: 'myfile.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        pagebreak: { mode: 'avoid-all' },
+        jsPDF: {
+          unit: 'in',
+          format: 'letter',
+          orientation: 'portrait',
+        },
+      };
+
+      html2pdf()
+        .set(opt)
+        .from(el)
+        .outputPdf('blob')
+        .then((res) => {
+          this.pdfRender = res;
+          console.log(typeof res);
+          console.log(this.pdfRender);
+        })
+        .catch((err) => console.error(err));
+    },
   },
 };
 </script>
@@ -522,4 +575,9 @@ export default {
   margin: 0 auto
   text-align: left
   max-width: 60%
+
+#sigPad
+  background: white
+  border: 1px solid #ced4da
+  border-radius: 3px
 </style>

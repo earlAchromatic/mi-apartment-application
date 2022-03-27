@@ -18,9 +18,9 @@
             <template #title>
               {{ unit.shortDescr }} |
               {{
-                Number(unit.rent).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
+                Number(unit.rent).toLocaleString('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
                   maximumSignificantDigits: 3,
                 })
               }}/mo.</template
@@ -45,15 +45,15 @@
 </template>
 
 <script setup>
-import Card from "primevue/card";
-import Tag from "primevue/tag";
-import TourGallery from "../components/TourGallery.vue";
+import Card from 'primevue/card';
+import Tag from 'primevue/tag';
+import TourGallery from '../components/TourGallery.vue';
 </script>
 
 <script>
 export default {
   components: { TourGallery, Tag },
-  props: ["units"],
+  props: ['units'],
 };
 </script>
 
@@ -61,6 +61,7 @@ export default {
 .offset
   margin-top: 10rem
   padding: 1rem
+
 h2
   font-size: 5rem
   margin: 0rem auto

@@ -1,5 +1,5 @@
 <template>
-  <div class="faq-offset">
+  <div class="faq-offset opaque">
     <h2>Frequently Asked Questions</h2>
     <Fieldset legend="Do you perform background checks?" :toggleable="true">
       <b>Yes</b>, we do.

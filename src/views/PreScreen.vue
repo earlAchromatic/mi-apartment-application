@@ -1,5 +1,5 @@
 <template>
-  <div class="screen-offset">
+  <div class="screen-offset opaque">
     <Requirements :unit="this.selectedUnit" />
     <Card class="instructions">
       <template #title> Submit This Form to Schedule A Showing </template>

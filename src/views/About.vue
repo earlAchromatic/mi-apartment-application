@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card class="opaque">
     <template #header>
       <img src="../assets/home2.jpg" alt="" />
     </template>
@@ -51,7 +51,7 @@ export default {
 
 <style lang="sass" scoped>
 .p-card
-    background: initial
+    
     max-width: 45rem
     margin: 0 auto
 

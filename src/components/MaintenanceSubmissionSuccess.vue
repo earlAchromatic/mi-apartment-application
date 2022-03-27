@@ -25,7 +25,7 @@
 p
   text-align: left
 .p-card
-    background: initial
+
     max-width: 45rem
     margin: 0 auto
 

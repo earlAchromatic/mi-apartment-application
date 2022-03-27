@@ -71,6 +71,11 @@ html
 body
   margin: 0
   background: white
+  background: url('./assets/welcome-home.svg')
+  background-attachment: fixed
+  background-size: contain
+  background-position: 0px 50px
+  background-repeat: no-repeat
 $gutter: 10rem
 .centered
     max-width: 90vw
@@ -95,4 +100,8 @@ a
     text-align: left
 .p-card-header
   position: relative
+
+.opaque
+  background-color: rgba(255,255,255,0.94)
+  backdrop-filter: blur(2px)
 </style>
