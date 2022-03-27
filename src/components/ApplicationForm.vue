@@ -1,7 +1,7 @@
 <template>
   <div class="application-offset">
     <Toast />
-    <h2>
+    <h2 class="opaque">
       Rental Application For 439 W. Washington | {{ this.$route.params.id }} |
       Ionia, Michigan, 48846
     </h2>

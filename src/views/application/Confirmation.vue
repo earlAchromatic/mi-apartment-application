@@ -391,11 +391,11 @@
               >Your Acknowledgement is required.</small
             >
           </div>
-          <div>
+          <div class="signature-pad">
             <label for="sigPad">Sign Here:</label>
             <VueSignaturePad
               id="sigPad"
-              width="500px"
+              width="100%"
               height="200px"
               ref="signaturePad"
               :options="{ onEnd }"
@@ -580,4 +580,8 @@ export default {
   background: white
   border: 1px solid #ced4da
   border-radius: 3px
+
+.signature-pad
+  width: 46rem
+  max-width: 100%
 </style>

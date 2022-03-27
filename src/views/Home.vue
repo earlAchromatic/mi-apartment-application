@@ -61,7 +61,7 @@ export default {
 .offset
   margin-top: 10rem
   padding: 1rem
-
+  background: rgba(255,255,255,0.5)
 h2
   font-size: 5rem
   margin: 0rem auto
