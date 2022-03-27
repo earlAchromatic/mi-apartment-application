@@ -18,14 +18,13 @@
   </div>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .success
   margin-top: 9rem
   padding:1rem
 p
   text-align: left
 .p-card
-
     max-width: 45rem
     margin: 0 auto
 

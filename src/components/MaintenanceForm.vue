@@ -122,10 +122,10 @@ export default {
         this.validationErrors['selectedUnit'] = true;
       } else delete this.validationErrors['selectedUnit'];
 
-      if (!this.selectedUnit) {
+      if (!this.fullname) {
         this.validationErrors['fullname'] = true;
       } else delete this.validationErrors['fullname'];
-      if (!this.selectedUnit) {
+      if (!this.issue) {
         this.validationErrors['issue'] = true;
       } else delete this.validationErrors['issue'];
 
