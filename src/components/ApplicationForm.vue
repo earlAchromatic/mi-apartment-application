@@ -98,6 +98,7 @@ export default {
       formObject.value.consent = consent;
       formObject.value.datestamp = datestamp;
       formObject.value.signature = sig;
+      formObject.value.pdfRender = evt.pdfRender;
       handleSubmit();
     };
 
@@ -158,7 +159,7 @@ export default {
             fetch(sendpdfURL, {
               method: 'POST',
               body: bodyData,
-            });
+            }).then((res) => console.log(res));
           })
           .then((res) => {
             console.log(`POST to Netlify Function at: ${sendpdfURL}`);

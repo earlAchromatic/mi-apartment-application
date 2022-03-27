@@ -13,38 +13,29 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async function (event) {
-  console.log('starting function...');
-
   const fields = await parseMultipartForm(event);
-  console.log(fields);
 
-  console.log(`Sending PDF report`);
-
-  let pdf = new jsPDF();
-  let placement = 10;
-  for (const [key, field] of Object.entries(fields)) {
-    pdf.text(key, 10, placement);
-    placement += 10;
-    pdf.text(field, 10, placement);
-    placement += 10;
-  }
-
-  const report = Buffer.from(pdf.output('arraybuffer'));
   const info = await transporter.sendMail({
-    from: process.env.MAILGUN_SENDER,
+    from: 'info@ionia.apartments',
     to: 'info@ionia.apartments',
-    subject: 'Your report is ready!',
+    subject: `Application for ${fields.firstname} ${fields.lastname} | ${fields.selectedUnit} | ${fields.datestamp}`,
     text: 'See attached report PDF',
     attachments: [
       {
-        filename: `report-${new Date().toDateString()}.pdf`,
-        content: report,
+        filename: `${fields.selectedUnit}-application-${
+          fields.lastname
+        }-${new Date().toDateString()}.pdf`,
+        content: Buffer.from(fields.pdfRender.content),
         contentType: 'application/pdf',
       },
     ],
   });
 
   console.log(`PDF report sent: ${info.messageId}`);
+  return {
+    statusCode: 200,
+    body: `PDF report sent: ${info.messageId}`,
+  };
 };
 
 function parseMultipartForm(event) {
@@ -55,15 +46,15 @@ function parseMultipartForm(event) {
       headers: event.headers,
     });
 
-    // busboy.on('file', (fieldname, filestream, filename, _, mimeType) => {
-    //   filestream.on('data', (data) => {
-    //     fields[fieldname] = {
-    //       content: data,
-    //       filename,
-    //       type: mimeType,
-    //     };
-    //   });
-    // });
+    busboy.on('file', (fieldname, filestream, filename, _, mimeType) => {
+      filestream.on('data', (data) => {
+        fields[fieldname] = {
+          content: data,
+          filename,
+          type: mimeType,
+        };
+      });
+    });
 
     busboy.on('field', (fieldName, value) => {
       fields[fieldName] = value;

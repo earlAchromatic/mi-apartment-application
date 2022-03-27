@@ -1,16 +1,17 @@
 <template>
-  <div class="stepsdemo-content">
+  <div ref="pdfPlatform" class="stepsdemo-content">
     <Card>
-      <template v-slot:title> Confirmation </template>
+      <template v-slot:title>Confirmation</template>
+      <template v-slot:subtitle>Please review all information.</template>
       <template v-slot:content>
         <div class="grid p-fluid">
-          <div class="field col-2">
+          <div class="field col-3">
             <label for="selectedUnit">Selected Unit</label>
             <b name="selectedUnit"
               >{{ formData.selectedUnit ? formData.selectedUnit : '-' }}
             </b>
           </div>
-          <div class="field md:col-2 col-6">
+          <div class="field md:col-3 col-6">
             <label for="class">Name</label>
             <b
               >{{ formData.firstname ? formData.firstname : '-' }}
@@ -18,14 +19,14 @@
               {{ formData.lastname ? formData.lastname : '-' }}</b
             >
           </div>
-          <div class="field md:col-2 col-6">
+          <div class="field md:col-3 col-6">
             <label for="address">address</label>
             <b>{{ formData.address ? formData.address : '-' }}</b>
             <b>{{ formData.city ? formData.city : '-' }}</b>
             <b>{{ formData.state ? formData.state : '-' }}</b>
             <b>{{ formData.zip ? formData.zip : '-' }}</b>
           </div>
-          <div class="field md:col-2 col-6">
+          <div class="field md:col-3 col-6">
             <label for="Age">phone</label>
             <b>{{ formData.homephone ? formData.homephone : '-' }}</b>
             <b>{{ formData.workphone ? formData.workphone : '-' }}</b>
@@ -280,7 +281,7 @@
             <b>{{ formData.eviction ? formData.eviction : '-' }}</b>
             <b>{{ formData.explain ? formData.explain : '-' }}</b>
           </div>
-          <div class="field md:col-2 col-6">
+          <div class="field md:col-4 col-6">
             <label for="Age">Occupants</label>
             <b>{{ formData.OccupantCount ? formData.OccupantCount : '-' }}</b>
 
@@ -427,6 +428,7 @@ import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import InputMask from 'primevue/inputmask';
 import formData from '../../../formData';
+import html2pdf from 'html2pdf.js';
 
 export default {
   data() {
@@ -437,6 +439,7 @@ export default {
         datestamp: new Date().toLocaleDateString('en-US'),
         consent: '',
         signature: '',
+        pdfRender: null,
         submitted: false,
         validationErrors: {},
       };
@@ -456,6 +459,7 @@ export default {
           datestamp: this.datestamp,
           consent: this.consent,
           signature: this.signature,
+          pdfRender: this.pdfRender,
         });
       }
       this.submitted = true;
@@ -476,13 +480,44 @@ export default {
       return !Object.keys(this.validationErrors).length;
     },
   },
+  mounted() {
+    let el = this.$refs.pdfPlatform;
+
+    let opt = {
+      margin: 0.15,
+      filename: 'myfile.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      pagebreak: { mode: 'avoid-all' },
+      jsPDF: {
+        unit: 'in',
+        format: 'letter',
+        orientation: 'portrait',
+      },
+    };
+
+    html2pdf()
+      .set(opt)
+      .from(el)
+      .outputPdf('blob')
+      .then((res) => {
+        this.pdfRender = res;
+        console.log(typeof res);
+        console.log(this.pdfRender);
+      })
+      .catch((err) => console.error(err));
+  },
 };
 </script>
 
 <style lang="sass">
+
+.p-card .p-card-content
+  margin-bottom: 3rem
 .field
   flex-direction: column
-
+  align-items: flex-start
+  &>*
+    text-align: start
 .binding
   margin: 0 auto
   text-align: left
