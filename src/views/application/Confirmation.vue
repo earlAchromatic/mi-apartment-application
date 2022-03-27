@@ -574,7 +574,7 @@ export default {
 .binding
   margin: 0 auto
   text-align: left
-  max-width: 60%
+
 
 #sigPad
   background: white
