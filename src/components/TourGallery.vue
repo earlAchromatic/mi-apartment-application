@@ -45,11 +45,14 @@
 </template>
 
 <script>
-import Galleria from "primevue/galleria";
-import PhotoService from "../service/PhotoService";
+import Galleria from 'primevue/galleria';
+import PhotoService from '../service/PhotoService';
 
 export default {
-  props: ["photoSrc"],
+  components: {
+    Galleria,
+  },
+  props: ['photoSrc'],
   data() {
     return {
       images: null,
@@ -85,6 +88,7 @@ export default {
     },
     openFullScreen() {
       let elem = this.$refs.galleria.$el;
+
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
       } else if (elem.mozRequestFullScreen) {
@@ -110,44 +114,47 @@ export default {
       }
     },
     bindDocumentListeners() {
-      document.addEventListener("fullscreenchange", this.onFullScreenChange);
-      document.addEventListener("mozfullscreenchange", this.onFullScreenChange);
+      document.addEventListener('fullscreenchange', this.onFullScreenChange);
+      document.addEventListener('mozfullscreenchange', this.onFullScreenChange);
       document.addEventListener(
-        "webkitfullscreenchange",
+        'webkitfullscreenchange',
         this.onFullScreenChange
       );
-      document.addEventListener("msfullscreenchange", this.onFullScreenChange);
+      document.addEventListener('msfullscreenchange', this.onFullScreenChange);
     },
     unbindDocumentListeners() {
-      document.removeEventListener("fullscreenchange", this.onFullScreenChange);
+      document.removeEventListener('fullscreenchange', this.onFullScreenChange);
       document.removeEventListener(
-        "mozfullscreenchange",
+        'mozfullscreenchange',
         this.onFullScreenChange
       );
       document.removeEventListener(
-        "webkitfullscreenchange",
+        'webkitfullscreenchange',
         this.onFullScreenChange
       );
       document.removeEventListener(
-        "msfullscreenchange",
+        'msfullscreenchange',
         this.onFullScreenChange
       );
     },
   },
   computed: {
     galleriaClass() {
-      return ["custom-galleria", { fullscreen: this.fullScreen }];
+      return ['custom-galleria', { fullscreen: this.fullScreen }];
     },
     fullScreenIcon() {
       return `pi ${
-        this.fullScreen ? "pi-window-minimize" : "pi-window-maximize"
+        this.fullScreen ? 'pi-window-minimize' : 'pi-window-maximize'
       }`;
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.p-card-header {
+  min-height: 20rem;
+}
 ::v-deep(.custom-galleria) {
   &.fullscreen {
     display: flex;
@@ -159,6 +166,10 @@ export default {
   }
   .p-galleria-content {
     position: relative;
+    min-height: 20rem;
+    .p-galleria-item-container {
+      min-height: 20rem;
+    }
   }
   .p-galleria-thumbnail-wrapper {
     position: absolute;
@@ -200,6 +211,7 @@ export default {
 }
 img {
   object-fit: contain;
+  animation: fadein 0.5s ease-in;
 }
 .custom-galleria-footer {
   display: flex;

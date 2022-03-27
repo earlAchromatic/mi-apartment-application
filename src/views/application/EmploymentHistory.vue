@@ -358,7 +358,7 @@ import InputMask from 'primevue/inputmask';
 import formData from '../../../formData';
 export default {
   data() {
-    if (import.meta.env.DEV) {
+    if (import.meta.env.DEV || import.meta.env.VITE_DATA) {
       return formData;
     } else {
       return {

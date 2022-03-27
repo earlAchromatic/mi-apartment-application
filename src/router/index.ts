@@ -33,6 +33,11 @@ const routes = [
     component: () => import('../components/MaintenanceSubmissionSuccess.vue'),
   },
   {
+    path: '/:catchAll(.*)/application-submitted',
+    name: 'application-submitted',
+    component: () => import('../components/ApplicationSubmissionSuccess.vue'),
+  },
+  {
     path: '/:catchAll(.*)/thanks',
     name: 'success',
     component: () => import('../components/SubmissionSuccess.vue'),

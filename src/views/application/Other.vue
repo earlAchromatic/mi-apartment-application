@@ -553,7 +553,7 @@ export default {
     Textarea,
   },
   data() {
-    if (import.meta.env.DEV) {
+    if (import.meta.env.DEV || import.meta.env.VITE_DATA) {
       return formData;
     } else {
       return {

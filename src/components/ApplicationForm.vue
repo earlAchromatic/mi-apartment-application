@@ -42,6 +42,13 @@ import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import Disclaimer from './Disclaimer.vue';
 
+let sendpdfURL;
+if (import.meta.env.DEV) {
+  sendpdfURL = 'http://localhost:7000/.netlify/functions/send-pdf';
+} else {
+  sendpdfURL = '/.netlify/functions/send-pdf';
+}
+
 export default {
   setup() {
     const router = useRouter();
@@ -91,6 +98,7 @@ export default {
       formObject.value.consent = consent;
       formObject.value.datestamp = datestamp;
       formObject.value.signature = sig;
+      formObject.value.pdfRender = evt.pdfRender;
       handleSubmit();
     };
 
@@ -132,7 +140,6 @@ export default {
             );
           }
         } else {
-          console.log(value);
           bodyData.append(key, value);
         }
       }
@@ -144,11 +151,25 @@ export default {
           method: 'POST',
           body: bodyData,
         })
-          .then((res) => console.log(res.ok))
+          .then((res) => {
+            console.log('Initial POST to Netlify:');
+            console.log(res.ok);
+          })
+          .then(() => {
+            fetch(sendpdfURL, {
+              method: 'POST',
+              body: bodyData,
+            })
+              .then((res) => console.log(res))
+              .catch((err) => console.error(err));
+          })
+          .then((res) => {
+            console.log(`POST to Netlify Function at: ${sendpdfURL}`);
+          })
           .then(() => {
             toast.add({
               severity: 'success',
-              summary: 'Order submitted',
+              summary: 'Application submitted',
               detail:
                 'Dear, ' +
                 formObject.value.firstname +
@@ -156,11 +177,10 @@ export default {
                 formObject.value.lastname +
                 ' your application has been submitted.',
             });
-            router.push('thanks');
+            router.push('application-submitted');
           })
-          .catch(() => {
-            console.log('ERROR FILLING OUT FORM');
-            router.push('404');
+          .catch((err) => {
+            console.log(err);
           });
       } catch (err) {
         if (errCount >= 1) {
@@ -168,7 +188,7 @@ export default {
         } else {
           toast.add({
             severity: 'error',
-            summary: 'Your application has NOT been submitted.',
+            summary: 'Your Application has NOT been submitted.',
             detail:
               'Something out of ordinary happened... Please make sure that each of the form sections are completely filled out and try again.',
           });
