@@ -466,7 +466,7 @@
                 >Social Security Number</label
               >
               <InputMask
-                mask="999-999-9999"
+                mask="999-99-9999"
                 :id="'socialSecurity_' + (i + 1)"
                 v-model="occupant[`socialSecurity_${i + 1}`]"
                 :class="{
