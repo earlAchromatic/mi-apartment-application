@@ -309,7 +309,7 @@
           </div>
           <div class="field md:col-2 col-6">
             <label for="Age">Police Called</label>
-            <b>{{ formData.desiredMovein ? formData.desiredMovein : '-' }}</b>
+            <b>{{ formData.policeCalled ? formData.policeCalled : '-' }}</b>
           </div>
           <div class="field md:col-2 col-6">
             <label for="Age">Sex Offender</label>
