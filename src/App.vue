@@ -35,7 +35,7 @@ const units = ref([
     longDescr:
       'Relax and unwind in this spacious 2,000 sq foot, two bedroom and one bathroom apartment complete with living and dining rooms with lovely original stained glass french doors and new flooring. Fully equipped with a brand new washer and dryer and off-street, 2 car parking. Stay cool in the summer and warm in the winter with the forced air AC & furnace. Basement access is perfect for storage and recreation and enjoy the side porch access and watch the sunrise over Ionia’s historic downtown.',
     image: '/src/assets/unitB-feature.jpg',
-    avail: true,
+    avail: false,
     rent: 1150,
     sqft: 2000,
     photoJSON: '/data/unitB_photos.json',
